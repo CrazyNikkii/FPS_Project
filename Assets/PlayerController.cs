@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked; 
         characterController = GetComponent<CharacterController>();
         float sens = PlayerPrefs.GetFloat("Sensitivity", 1f);
     }
@@ -29,8 +30,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // Sensitivity etc
-        sensitivity = 1f;
-        // Käytä tätä sitten kun on asetukset = sensitivity = PlayerPrefs.GetFloat ("Sensitivity");
+        sensitivity = 0.25f;
+        // Kï¿½ytï¿½ tï¿½tï¿½ sitten kun on asetukset = sensitivity = PlayerPrefs.GetFloat ("Sensitivity");
 
         // Moving
         Vector3 forward = transform.TransformDirection (Vector3.forward);
