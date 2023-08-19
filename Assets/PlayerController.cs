@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // Sensitivity etc
-        sensitivity = 0.25f;
+        sensitivity = 0.05f;
         // K�yt� t�t� sitten kun on asetukset = sensitivity = PlayerPrefs.GetFloat ("Sensitivity");
 
         // Moving
