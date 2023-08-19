@@ -22,7 +22,7 @@ public class GunController : MonoBehaviour
     public Camera aimCam;
     public Transform shootingPoint;
 
-    // Graphs
+    // Graphics
     public GameObject muzzleFlash;
     public TextMeshProUGUI ammunitionDisplay;
 
@@ -31,10 +31,11 @@ public class GunController : MonoBehaviour
 
     public void Awake()
     {
-        // StartState
+        // Start with full magazine
         bulletsLeft = magazineSize;
         readyToShoot = true;
     }
+
     void Start()
     {
         
