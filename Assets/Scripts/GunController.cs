@@ -39,10 +39,13 @@ public class GunController : MonoBehaviour
 
     public void Awake()
     {
+        reloadingText = GameObject.FindWithTag("ReloadText");
+
         // Start with full magazine
         bulletsLeft = magazineSize;
         readyToShoot = true;
-        reloadingText.SetActive(false);
+        //reloadingText.SetActive(false);
+        
     }
 
     void Start()
@@ -134,7 +137,7 @@ public class GunController : MonoBehaviour
     public void Reload()
     {
         reloading = true;
-        reloadingText.SetActive(true);
+        //reloadingText.SetActive(true);
         Invoke("ReloadFinished", reloadTime);
         Debug.Log("Reloading");
     }
@@ -143,7 +146,7 @@ public class GunController : MonoBehaviour
     {
         bulletsLeft = magazineSize;
         reloading = false;
-        reloadingText.SetActive(false);
+        //reloadingText.SetActive(false);
         Debug.Log("Reloading Finished");
     }
 }
