@@ -15,6 +15,10 @@ public class GunController : MonoBehaviour
     public bool allowButtonDown;
     int bulletsLeft, bulletsShot;
 
+    // Recoil
+    //public Rigidbody playerRb;
+    //public float recoilFloat;
+
     // State
     bool shooting, readyToShoot, reloading;
 
@@ -23,7 +27,8 @@ public class GunController : MonoBehaviour
     public Transform shootingPoint;
 
     // Graphics
-    public GameObject muzzleFlash;
+    //public GameObject muzzleFlash;
+    public ParticleSystem muzzleFlash;
     public TextMeshProUGUI ammunitionDisplay;
 
     // Debug
@@ -38,7 +43,7 @@ public class GunController : MonoBehaviour
 
     void Start()
     {
-        
+        //playerRb = GetComponent<Rigidbody>();
     }
 
 
@@ -97,7 +102,7 @@ public class GunController : MonoBehaviour
         currentBullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * bulletForce, ForceMode.Impulse);
 
         // Toggle when muzzleflash
-        //if (muzzleFlash != null)
+        muzzleFlash.Play();
         //Instantiate(muzzleFlash, shootingPoint.position, Quaternion.identity,);
 
         bulletsLeft--;
@@ -107,6 +112,8 @@ public class GunController : MonoBehaviour
         {
             Invoke("ResetShot", timeBetweenShooting);
             allowInvoke = false;
+        // Recoil
+            //playerRb.AddForce(-directionWithSpread.normalized * recoilFloat, ForceMode.Impulse);
         }
         // This is for Shotguns
         //If (bulletShot < bulletsPerTap && bulletsLeft > 0)
@@ -123,11 +130,13 @@ public class GunController : MonoBehaviour
     {
         reloading = true;
         Invoke("ReloadFinished", reloadTime);
+        Debug.Log("Reloading");
     }
 
     public void ReloadFinished()
     {
         bulletsLeft = magazineSize;
         reloading = false;
+        Debug.Log("Reloading Finished");
     }
 }
