@@ -25,6 +25,9 @@ public class GunController : MonoBehaviour
     // Refs
     public Camera aimCam;
     public Transform shootingPoint;
+    public AudioSource gunSound;
+    public AudioClip gunSoundClip;
+    public GameObject reloadingText;
 
     // Graphics
     //public GameObject muzzleFlash;
@@ -39,11 +42,13 @@ public class GunController : MonoBehaviour
         // Start with full magazine
         bulletsLeft = magazineSize;
         readyToShoot = true;
+        reloadingText.SetActive(false);
     }
 
     void Start()
     {
         //playerRb = GetComponent<Rigidbody>();
+        gunSound = GetComponent<AudioSource>();
     }
 
 
@@ -101,9 +106,9 @@ public class GunController : MonoBehaviour
         currentBullet.transform.forward = directionWithSpread.normalized;
         currentBullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * bulletForce, ForceMode.Impulse);
 
-        // Toggle when muzzleflash
+        // Muzzleflash And Sound
         muzzleFlash.Play();
-        //Instantiate(muzzleFlash, shootingPoint.position, Quaternion.identity,);
+        gunSound.PlayOneShot(gunSoundClip, 1f);
 
         bulletsLeft--;
         bulletsShot++;
@@ -129,6 +134,7 @@ public class GunController : MonoBehaviour
     public void Reload()
     {
         reloading = true;
+        reloadingText.SetActive(true);
         Invoke("ReloadFinished", reloadTime);
         Debug.Log("Reloading");
     }
@@ -137,6 +143,7 @@ public class GunController : MonoBehaviour
     {
         bulletsLeft = magazineSize;
         reloading = false;
+        reloadingText.SetActive(false);
         Debug.Log("Reloading Finished");
     }
 }
