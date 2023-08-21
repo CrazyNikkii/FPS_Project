@@ -331,8 +331,8 @@ GameObject:
   - component: {fileID: 112789769080123315}
   - component: {fileID: 129337798049406843}
   - component: {fileID: 5086007652337067447}
-  - component: {fileID: 6058082169294727489}
   - component: {fileID: 2741696091758695654}
+  - component: {fileID: 7359202253444638998}
   m_Layer: 0
   m_Name: Player Network
   m_TagString: Player
@@ -494,36 +494,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCamObject: {fileID: 6565088828087491392}
   playerCam: {fileID: 0}
---- !u!114 &6058082169294727489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7211920784610421987}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c28dfe7cd5aa40b468cd085621964ab8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 3373223695251680027, guid: ce5b02c4727dd924bba46a79cf44cfb9, type: 3}
-  bulletForce: 20
-  upwardForce: 0
-  timeBetweenShooting: 0.5
-  spread: 0
-  reloadTime: 2
-  timeBetweenShots: 0
-  magazineSize: 30
-  bulletsPerTap: 1
-  allowButtonDown: 1
-  aimCam: {fileID: 6087535181106038122}
-  shootingPoint: {fileID: 1007593932768379879}
-  gunSound: {fileID: 2741696091758695654}
-  gunSoundClip: {fileID: 8300000, guid: 129d09d05e51be146af8fb44749e98ed, type: 3}
-  reloadingText: {fileID: 0}
-  muzzleFlash: {fileID: 1922752053030409963}
-  ammunitionDisplay: {fileID: 0}
-  allowInvoke: 1
 --- !u!82 &2741696091758695654
 AudioSource:
   m_ObjectHideFlags: 0
@@ -620,6 +590,36 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7359202253444638998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7211920784610421987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32d23288fa716034faf620b3ebaf95bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 0}
+  bulletForce: 20
+  upwardForce: 0
+  timeBetweenShooting: 0.5
+  spread: 0
+  reloadTime: 2
+  timeBetweenShots: 0
+  magazineSize: 30
+  bulletsPerTap: 1
+  allowButtonDown: 1
+  aimCam: {fileID: 0}
+  shootingPoint: {fileID: 0}
+  gunSound: {fileID: 0}
+  gunSoundClip: {fileID: 0}
+  reloadingText: {fileID: 0}
+  muzzleFlash: {fileID: 0}
+  ammunitionDisplay: {fileID: 0}
+  allowInvoke: 1
 --- !u!1 &7771436257039593391
 GameObject:
   m_ObjectHideFlags: 0
