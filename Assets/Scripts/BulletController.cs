@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class BulletController : MonoBehaviour
+public class BulletController : NetworkBehaviour
 {
     public Rigidbody rb;
     public GameObject bulletHole;

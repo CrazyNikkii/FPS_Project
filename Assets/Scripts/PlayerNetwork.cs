@@ -14,6 +14,8 @@ public class PlayerNetwork : NetworkBehaviour
     public Camera playerCam;
     public float sensitivity;
     public float cameraLimit = 45.0f;
+    //public GameObject cameraHolder;
+    //public GameObject gunCamera;
 
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
@@ -26,6 +28,8 @@ public class PlayerNetwork : NetworkBehaviour
         Cursor.lockState = CursorLockMode.Locked; 
         characterController = GetComponent<CharacterController>();
         float sens = PlayerPrefs.GetFloat("Sensitivity", 1f);
+        
+        
     }
 
     // Update is called once per frame
@@ -35,6 +39,9 @@ public class PlayerNetwork : NetworkBehaviour
         // Sensitivity etc
         sensitivity = 0.05f;
         // K�yt� t�t� sitten kun on asetukset = sensitivity = PlayerPrefs.GetFloat ("Sensitivity");
+
+
+
 
         // Moving
         Vector3 forward = transform.TransformDirection (Vector3.forward);
