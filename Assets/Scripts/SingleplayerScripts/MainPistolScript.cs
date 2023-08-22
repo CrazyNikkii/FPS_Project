@@ -87,7 +87,7 @@ public class MainPistolScript : MonoBehaviour
         }
 
         // Muzzleflash And Sound
-        //muzzleFlash.Play();
+        muzzleFlash.Play();
         gunSound.PlayOneShot(gunSoundClip, 1f);
 
         bulletsLeft--;
