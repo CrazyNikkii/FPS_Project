@@ -32,12 +32,12 @@ public class MainPistolScript : MonoBehaviour
 
     public void Awake()
     {
-        //reloadingText = GameObject.FindWithTag("ReloadText");
+        reloadingText = GameObject.FindWithTag("ReloadText");
 
         // Start with full magazine
         bulletsLeft = magazineSize;
         readyToShoot = true;
-        //reloadingText.SetActive(false);
+        reloadingText.SetActive(false);
         
     }
 
@@ -111,7 +111,7 @@ public class MainPistolScript : MonoBehaviour
     void ReloadMainPistol()
     {
         reloading = true;
-        //reloadingText.SetActive(true);
+        reloadingText.SetActive(true);
         Invoke("ReloadMainPistolFinished", reloadTime);
         Debug.Log("Reloading");
     }
@@ -120,7 +120,7 @@ public class MainPistolScript : MonoBehaviour
     {
         bulletsLeft = magazineSize;
         reloading = false;
-        //reloadingText.SetActive(false);
+        reloadingText.SetActive(false);
         Debug.Log("Reloading Finished");
     }
 }
