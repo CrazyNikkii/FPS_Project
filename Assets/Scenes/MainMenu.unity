@@ -665,7 +665,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 761688745750983368, guid: 03d080181c42b9140ad7ad6ce4a155cf, type: 3}
       propertyPath: m_Value
-      value: 0.0001
+      value: 0.61
       objectReference: {fileID: 0}
     - target: {fileID: 761688745750983368, guid: 03d080181c42b9140ad7ad6ce4a155cf, type: 3}
       propertyPath: m_MaxValue
@@ -698,6 +698,10 @@ PrefabInstance:
     - target: {fileID: 2510564215074103581, guid: 03d080181c42b9140ad7ad6ce4a155cf, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548695114913375133, guid: 03d080181c42b9140ad7ad6ce4a155cf, type: 3}
+      propertyPath: m_text
+      value: PROJECT.ELENA
       objectReference: {fileID: 0}
     - target: {fileID: 3622665291664848892, guid: 03d080181c42b9140ad7ad6ce4a155cf, type: 3}
       propertyPath: m_AnchorMax.x
@@ -757,7 +761,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6546360101024277046, guid: 03d080181c42b9140ad7ad6ce4a155cf, type: 3}
       propertyPath: m_Value
-      value: 0.0001
+      value: 0.59
       objectReference: {fileID: 0}
     - target: {fileID: 6546360101024277046, guid: 03d080181c42b9140ad7ad6ce4a155cf, type: 3}
       propertyPath: m_MaxValue
@@ -775,6 +779,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7251929437037102004, guid: 03d080181c42b9140ad7ad6ce4a155cf, type: 3}
+      propertyPath: m_Value
+      value: 0.62
+      objectReference: {fileID: 0}
     - target: {fileID: 7714714430972552590, guid: 03d080181c42b9140ad7ad6ce4a155cf, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -785,7 +793,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8735733470119837314, guid: 03d080181c42b9140ad7ad6ce4a155cf, type: 3}
       propertyPath: m_Value
-      value: 0.0001
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 8735733470119837314, guid: 03d080181c42b9140ad7ad6ce4a155cf, type: 3}
       propertyPath: m_MaxValue
