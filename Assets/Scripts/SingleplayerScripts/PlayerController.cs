@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public Camera playerCam;
     public float sensitivity;
     public float cameraLimit = 45.0f;
+    public GameManager gm;
 
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
@@ -21,7 +22,6 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked; 
         characterController = GetComponent<CharacterController>();
         float sens = PlayerPrefs.GetFloat("Sensitivity", 1f);
     }
@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        canMove = !gm.gamePaused;
         sensitivity = PlayerPrefs.GetFloat ("Sensitivity");
 
         // Moving
@@ -58,12 +59,15 @@ public class PlayerController : MonoBehaviour
         characterController.Move (moveDirection * Time.deltaTime);
 
         // Mouse Movement
-        //if(canMove)
-        
+        if(canMove)
+        {
             rotationX += -Input.GetAxis("Mouse Y") * sensitivity;
             rotationX = Mathf.Clamp(rotationX, -cameraLimit, cameraLimit);
             playerCam.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * sensitivity, 0);
+        }
+        
+
         
     }
 }
