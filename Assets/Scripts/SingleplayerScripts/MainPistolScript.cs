@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+using System.Runtime.InteropServices.ComTypes;
 
 public class MainPistolScript : MonoBehaviour
 {
@@ -21,6 +21,7 @@ public class MainPistolScript : MonoBehaviour
     public AudioClip gunSoundClip;
     public GameObject reloadingText;
     public GameObject bulletHole;
+    public GameManager gm;
 
     // Graphics
     public ParticleSystem muzzleFlash;
@@ -62,8 +63,8 @@ public class MainPistolScript : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading) ReloadMainPistol();
         if(readyToShoot && shooting && !reloading && bulletsLeft <= 0) ReloadMainPistol();
 
-        // Shoot (ADD PAUSE HERE)
-        if (readyToShoot && shooting && !reloading && bulletsLeft > 0)
+        // Shoot
+        if (readyToShoot && shooting && !reloading && bulletsLeft > 0 && gm.gamePaused == false)
         {
             bulletsShot = 0;
             ShootMainPistol();

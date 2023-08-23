@@ -24906,7 +24906,7 @@ GameObject:
   - component: {fileID: 2012288801}
   m_Layer: 5
   m_Name: ReloadingText
-  m_TagString: Untagged
+  m_TagString: ReloadText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26536,6 +26536,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4312295381483218814, guid: 085ea537c1b9d434cb2c97682b10c346, type: 3}
+      propertyPath: gm
+      value: 
+      objectReference: {fileID: 274053554}
+    - target: {fileID: 5786680310209803248, guid: 085ea537c1b9d434cb2c97682b10c346, type: 3}
       propertyPath: gm
       value: 
       objectReference: {fileID: 274053554}
