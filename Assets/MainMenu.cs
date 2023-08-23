@@ -9,4 +9,10 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("SingleplayerMap");
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+        Debug.Log("Quitting game.");
+    }
 }
