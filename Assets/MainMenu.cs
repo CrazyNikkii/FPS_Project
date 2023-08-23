@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using TMPro;
 using System.Runtime.InteropServices.ComTypes;
 
 public class MainMenu : MonoBehaviour
@@ -12,6 +13,8 @@ public class MainMenu : MonoBehaviour
     public Slider masterVolumeS;
     public Slider musicVolumeS;
     public Slider effectsVolumeS;
+    public Slider sensSlider;
+    public TextMeshProUGUI sensitivityText;
 
     public void Start()
     {
@@ -31,10 +34,16 @@ public class MainMenu : MonoBehaviour
         {
             Load();
         }
+        sensSlider.value = PlayerPrefs.GetFloat("Sensitivity");
 
         masterVolumeS.value = PlayerPrefs.GetFloat("masterVolume");
         musicVolumeS.value = PlayerPrefs.GetFloat("musicVolume");
         effectsVolumeS.value = PlayerPrefs.GetFloat("effectsVolume");
+    }
+    
+    public void Update()
+    {
+        sensitivityText.text = PlayerPrefs.GetFloat("Sensitivity").ToString("0.00");
     }
     public void PlayTraining()
     {
@@ -51,17 +60,17 @@ public class MainMenu : MonoBehaviour
 
     public void SetMasterVolume(float masterVolume)
     {
-        audioMixer.SetFloat("masterVolume", masterVolume);
+        audioMixer.SetFloat("masterVolume", Mathf.Log10 (masterVolume) * 20);
         PlayerPrefs.SetFloat("masterVolume", masterVolume);
     }
     public void SetMusicVolume(float musicVolume)
     {
-        audioMixer.SetFloat("musicVolume", musicVolume);
+        audioMixer.SetFloat("musicVolume", Mathf.Log10(musicVolume) * 20);
         PlayerPrefs.SetFloat("musicVolume", musicVolume);
     }
     public void SetEffectsVolume(float effectsVolume)
     {
-        audioMixer.SetFloat("effectsVolume", effectsVolume);
+        audioMixer.SetFloat("effectsVolume", Mathf.Log10(effectsVolume) * 20);
         PlayerPrefs.SetFloat("effectsVolume", effectsVolume);
     }
     
