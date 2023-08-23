@@ -38,6 +38,7 @@ public class MainMenu : MonoBehaviour
     public void PlayTraining()
     {
         SceneManager.LoadScene("SingleplayerMap");
+        Save();
     }
 
     public void QuitGame()
@@ -61,6 +62,11 @@ public class MainMenu : MonoBehaviour
     {
         audioMixer.SetFloat("effectsVolume", effectsVolume);
         PlayerPrefs.SetFloat("effectsVolume", effectsVolume);
+    }
+    
+    public void SetSensitivity(float sensitivity)
+    {
+        PlayerPrefs.SetFloat("Sensitivity", sensitivity);
     }
 
     public void Load()

@@ -29,9 +29,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Sensitivity etc
-        sensitivity = 0.05f;
-        // K�yt� t�t� sitten kun on asetukset = sensitivity = PlayerPrefs.GetFloat ("Sensitivity");
+        sensitivity = PlayerPrefs.GetFloat ("Sensitivity");
 
         // Moving
         Vector3 forward = transform.TransformDirection (Vector3.forward);
