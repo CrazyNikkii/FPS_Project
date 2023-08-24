@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
+[Serializable]
 public class PlayerController : MonoBehaviour
 {
     //Floats and stuff
@@ -13,6 +16,10 @@ public class PlayerController : MonoBehaviour
     public float sensitivity;
     public float cameraLimit = 45.0f;
     public GameManager gm;
+    public float interactionDistance = 3f;
+    public LayerMask mask;
+
+
 
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
@@ -66,8 +73,17 @@ public class PlayerController : MonoBehaviour
             playerCam.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * sensitivity, 0);
         }
-        
 
-        
+        gm.UpdateText(string.Empty);
+        Ray ray = new Ray(playerCam.transform.position, playerCam.transform.forward);
+        Debug.DrawRay(ray.origin, ray.direction * interactionDistance);
+        RaycastHit hitInfo;
+        if (Physics.Raycast(ray, out hitInfo, interactionDistance, mask))
+        {
+            if (hitInfo.collider.GetComponent<Interactable>() != null)
+            {
+                gm.UpdateText(hitInfo.collider.GetComponent<Interactable>().promptMessage);
+            }
+        }
     }
 }

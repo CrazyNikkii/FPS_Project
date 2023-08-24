@@ -8,6 +8,7 @@ using System.Configuration;
 public class GameManager : MonoBehaviour
 {
     public TextMeshProUGUI fpsText;
+    public TextMeshProUGUI promptText;
     private float pollingTime = 1f;
     private float time;
     private int frameCount;
@@ -97,6 +98,11 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
         SaveData();
+    }
+
+    public void UpdateText(string promptMessage)
+    {
+        promptText.text = promptMessage;
     }
 
     // Training GameMode
