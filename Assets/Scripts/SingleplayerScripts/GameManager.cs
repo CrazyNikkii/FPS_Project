@@ -23,6 +23,11 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        var dummys = GameObject.FindGameObjectsWithTag("Dummy");
+        foreach (var dummy in dummys)
+        {
+            Destroy(dummy);
+        }
         TrainingModeStart();
         gamePaused = false;
         Time.timeScale = 1f;
