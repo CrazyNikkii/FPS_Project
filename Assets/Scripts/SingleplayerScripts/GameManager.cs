@@ -12,6 +12,11 @@ public class GameManager : MonoBehaviour
     private float time;
     private int frameCount;
 
+    // Training GameMode
+    public GameObject trainingDummies;
+    public Transform[] spawnPoints;
+    public int numberOfDummies = 10;
+
     // Pause
     public bool gamePaused = false;
     public GameObject pauseMenuUI;
@@ -19,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        TrainingModeStart();
         gamePaused = false;
         Time.timeScale = 1f;
         Scene scene = SceneManager.GetActiveScene();
@@ -87,5 +93,32 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
         SaveData();
+    }
+
+    // Training GameMode
+    public void TrainingModeStart()
+    {
+        if (spawnPoints.Length < numberOfDummies)
+        {
+            Debug.LogWarning("Not enough spawnpoints for the dummies");
+            return;
+        }
+
+        System.Random dummyRNG = new System.Random();
+        int n = spawnPoints.Length;
+
+        while(n > 1)
+        {
+            n--;
+            int k = dummyRNG.Next(n +1);
+            Transform value = spawnPoints[k];
+            spawnPoints[k] = spawnPoints[n];
+            spawnPoints[n] = value;
+        }
+
+        for(int i = 0; i < numberOfDummies; i++)
+        {
+            Instantiate(trainingDummies, spawnPoints[i].position, Quaternion.identity);
+        }
     }
 }
