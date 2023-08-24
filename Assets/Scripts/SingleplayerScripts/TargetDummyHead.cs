@@ -25,7 +25,7 @@ public class TargetDummyHead : MonoBehaviour
 
     void Die()
     {
-        Destroy(transform.parent.gameObject);
         gm.enemiesLeft--;
+        Destroy(transform.parent.gameObject);
     }
 }

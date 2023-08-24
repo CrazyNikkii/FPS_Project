@@ -6,11 +6,14 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    // FPS counter
     public TextMeshProUGUI fpsText;
-    public TextMeshProUGUI promptText;
     private float pollingTime = 1f;
     private float time;
     private int frameCount;
+
+    // Interactions
+    public TextMeshProUGUI promptText;
 
     // Training GameMode
     public GameObject trainingDummies;
@@ -20,6 +23,7 @@ public class GameManager : MonoBehaviour
     public float enemiesLeft;
     public float startTimer = 5f;
     public TextMeshProUGUI startTimerText;
+    public TimerScript timerScript;
 
     // Pause
     public bool gamePaused = false;
@@ -28,11 +32,14 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        // Destroys spawnpoint dummies
         var dummys = GameObject.FindGameObjectsWithTag("Dummy");
         foreach (var dummy in dummys)
         {
             Destroy(dummy);
         }
+
+        // Pause status
         gamePaused = false;
         Time.timeScale = 1f;
         Scene scene = SceneManager.GetActiveScene();
@@ -41,12 +48,15 @@ public class GameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
         }
+
+        // Gamemode start text off
         startTimerText.gameObject.SetActive(false);
     }
 
 
     void Update()
     {
+        // FPS counter
         time += Time.deltaTime;
         frameCount++;
         if(time >= pollingTime)
@@ -55,6 +65,7 @@ public class GameManager : MonoBehaviour
             fpsText.text = frameRate.ToString() + " FPS";
         }
 
+        // Cursos lockstate
         if(gamePaused == false)
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -71,6 +82,10 @@ public class GameManager : MonoBehaviour
             {
                 Pause();
             }
+        }
+        if(enemiesLeft <= 0)
+        {
+            timerScript.StopTimer();
         }
     }
 
@@ -132,7 +147,7 @@ public class GameManager : MonoBehaviour
     {
         // Spawn Dummies
         GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("DummySpawnPoint");
-        if (spawnPoints.Length == 0)
+        if (spawnPoints.Length < numberOfDummies )
         {
             Debug.LogWarning("Not enough spawnpoints for the dummies");
             return;
@@ -155,17 +170,18 @@ public class GameManager : MonoBehaviour
             Instantiate(trainingDummies, spawnPoints[i].transform.position, Quaternion.identity);
         }
 
-        enemiesLeft = numberOfDummies;
+        enemiesLeft = 10;
 
         // Remove spawn walls
         Destroy(spawnWallEast.gameObject);
         Destroy(spawnWallWest.gameObject);
 
+        timerScript.StartTimer();
         TrainingMode();
     }
 
     public void TrainingMode()
     {
-
+        
     }
 }
