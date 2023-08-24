@@ -465,6 +465,7 @@ GameObject:
   - component: {fileID: 83660777}
   - component: {fileID: 83660776}
   - component: {fileID: 83660775}
+  - component: {fileID: 83660778}
   m_Layer: 0
   m_Name: BodyCapsule
   m_TagString: Untagged
@@ -560,6 +561,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 83660773}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &83660778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 83660773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3188445ad2b110a4ca5d74b2741cfa34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyHealth: 100
 --- !u!43 &86562774
 Mesh:
   m_ObjectHideFlags: 0
@@ -20719,7 +20733,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1199083303}
-  - component: {fileID: 1199083302}
   m_Layer: 0
   m_Name: TargetDummyPrefab
   m_TagString: Untagged
@@ -20727,18 +20740,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1199083302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1199083301}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f05b39e43b8d7842b577acd68bd9f6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1199083303
 Transform:
   m_ObjectHideFlags: 0
@@ -20748,7 +20749,7 @@ Transform:
   m_GameObject: {fileID: 1199083301}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.51, y: -4.17, z: 0}
+  m_LocalPosition: {x: 4.51, y: -15.82, z: 0}
   m_LocalScale: {x: 0.67, y: 0.67, z: 0.67}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -24444,9 +24445,10 @@ GameObject:
   - component: {fileID: 1856386425}
   - component: {fileID: 1856386424}
   - component: {fileID: 1856386423}
+  - component: {fileID: 1856386426}
   m_Layer: 0
   m_Name: HeadSphere
-  m_TagString: Untagged
+  m_TagString: Head
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24537,6 +24539,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1856386421}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1856386426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856386421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4f37f74e9546be479be7cc24e4adece, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  headHealth: 100
 --- !u!43 &1877195967
 Mesh:
   m_ObjectHideFlags: 0
@@ -27014,6 +27029,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 274053554}
     - target: {fileID: 5786680310209803248, guid: 085ea537c1b9d434cb2c97682b10c346, type: 3}
+      propertyPath: dummyTarget
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5786680310209803248, guid: 085ea537c1b9d434cb2c97682b10c346, type: 3}
       propertyPath: muzzleFlash
       value: 
       objectReference: {fileID: 147828177}
@@ -27021,6 +27040,14 @@ PrefabInstance:
       propertyPath: reloadingText
       value: 
       objectReference: {fileID: 2012288799}
+    - target: {fileID: 5786680310209803248, guid: 085ea537c1b9d434cb2c97682b10c346, type: 3}
+      propertyPath: dummyTargetBody
+      value: 
+      objectReference: {fileID: 83660778}
+    - target: {fileID: 5786680310209803248, guid: 085ea537c1b9d434cb2c97682b10c346, type: 3}
+      propertyPath: dummyTargetHead
+      value: 
+      objectReference: {fileID: 1856386426}
     - target: {fileID: 5786680310209803248, guid: 085ea537c1b9d434cb2c97682b10c346, type: 3}
       propertyPath: ammunitionDisplay
       value: 
