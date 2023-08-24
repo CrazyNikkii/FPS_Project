@@ -12,7 +12,7 @@ public class MainPistolScript : MonoBehaviour
     public float damage = 50f;
 
     bool shooting, readyToShoot, reloading;
-
+    
     public Camera aimCam;
     public AudioSource gunSound;
     public AudioClip gunSoundClip;
@@ -33,6 +33,7 @@ public class MainPistolScript : MonoBehaviour
         bulletsLeft = magazineSize;
         readyToShoot = true;
         reloadingText.SetActive(false);
+
     }
 
     void Start()

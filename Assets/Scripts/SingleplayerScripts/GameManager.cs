@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
-using System.Configuration;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +15,8 @@ public class GameManager : MonoBehaviour
     // Training GameMode
     public GameObject trainingDummies;
     public int numberOfDummies = 10;
+    public GameObject spawnWallWest;
+    public GameObject spawnWallEast;
 
     // Pause
     public bool gamePaused = false;
@@ -29,7 +30,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(dummy);
         }
-        TrainingModeStart();
         gamePaused = false;
         Time.timeScale = 1f;
         Scene scene = SceneManager.GetActiveScene();
@@ -108,6 +108,7 @@ public class GameManager : MonoBehaviour
     // Training GameMode
     public void TrainingModeStart()
     {
+        // Spawn Dummies
         GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("DummySpawnPoint");
         if (spawnPoints.Length == 0)
         {
@@ -131,5 +132,9 @@ public class GameManager : MonoBehaviour
         {
             Instantiate(trainingDummies, spawnPoints[i].transform.position, Quaternion.identity);
         }
+
+        // Remove spawn walls
+        Destroy(spawnWallEast.gameObject);
+        Destroy(spawnWallWest.gameObject);
     }
 }

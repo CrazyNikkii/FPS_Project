@@ -30,6 +30,10 @@ public class MainMenu : MonoBehaviour
         {
             PlayerPrefs.SetFloat("effectsVolume", 1f);
         }
+        if (!PlayerPrefs.HasKey("Sensitivity"))
+        {
+            PlayerPrefs.SetFloat("Sensitivity", 1f);
+        }
         else
         {
             Load();
@@ -43,7 +47,7 @@ public class MainMenu : MonoBehaviour
     
     public void Update()
     {
-        sensitivityText.text = PlayerPrefs.GetFloat("Sensitivity").ToString("0.00");
+        sensitivityText.text = (PlayerPrefs.GetFloat("Sensitivity")*10).ToString("0.0");
     }
     public void PlayTraining()
     {

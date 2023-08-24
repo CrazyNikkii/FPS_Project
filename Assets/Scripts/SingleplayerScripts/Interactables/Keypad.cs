@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Keypad : Interactable
 {
+    public GameManager gm;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +20,7 @@ public class Keypad : Interactable
 
     protected override void Interact()
     {
+        gm.TrainingModeStart();
         Debug.Log("Interacted with " + gameObject.name);
     }
 }

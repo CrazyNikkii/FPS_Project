@@ -513,11 +513,11 @@ MonoBehaviour:
   magazineSize: 30
   bulletsPerTap: 1
   allowButtonDown: 1
-  aimCam: {fileID: 0}
-  shootingPoint: {fileID: 0}
-  gunSound: {fileID: 0}
-  gunSoundClip: {fileID: 0}
-  muzzleFlash: {fileID: 0}
+  aimCam: {fileID: 6087535181106038122}
+  shootingPoint: {fileID: 1007593932768379879}
+  gunSound: {fileID: 2741696091758695654}
+  gunSoundClip: {fileID: 8300000, guid: 129d09d05e51be146af8fb44749e98ed, type: 3}
+  muzzleFlash: {fileID: 1922752053030409963}
   ammunitionDisplay: {fileID: 0}
   allowInvoke: 1
 --- !u!1 &7771436257039593391
@@ -612,6 +612,11 @@ PrefabInstance:
 --- !u!4 &1304199439814863716 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4477577804329740134, guid: 927efd90980ff9f42acdc95ead9cdf6f, type: 3}
+  m_PrefabInstance: {fileID: 3187140273164700674}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1922752053030409963 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3932772769146936041, guid: 927efd90980ff9f42acdc95ead9cdf6f, type: 3}
   m_PrefabInstance: {fileID: 3187140273164700674}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6643352910209923271

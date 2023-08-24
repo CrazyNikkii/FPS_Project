@@ -74,6 +74,7 @@ public class PlayerController : MonoBehaviour
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * sensitivity, 0);
         }
 
+        // Interact
         gm.UpdateText(string.Empty);
         Ray ray = new Ray(playerCam.transform.position, playerCam.transform.forward);
         Debug.DrawRay(ray.origin, ray.direction * interactionDistance);
@@ -82,7 +83,12 @@ public class PlayerController : MonoBehaviour
         {
             if (hitInfo.collider.GetComponent<Interactable>() != null)
             {
-                gm.UpdateText(hitInfo.collider.GetComponent<Interactable>().promptMessage);
+                Interactable interactable = hitInfo.collider.GetComponent<Interactable>();
+                gm.UpdateText(interactable.promptMessage);
+                if(Input.GetKeyDown(KeyCode.E))
+                {
+                    interactable.BaseInteract();
+                }
             }
         }
     }

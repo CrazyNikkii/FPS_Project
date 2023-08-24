@@ -39259,7 +39259,7 @@ GameObject:
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1380811715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39273,6 +39273,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fpsText: {fileID: 1318162899}
+  promptText: {fileID: 0}
+  trainingDummies: {fileID: 0}
+  numberOfDummies: 10
+  spawnWallWest: {fileID: 0}
+  spawnWallEast: {fileID: 0}
+  gamePaused: 0
+  pauseMenuUI: {fileID: 0}
+  settingsUI: {fileID: 0}
 --- !u!4 &1380811716
 Transform:
   m_ObjectHideFlags: 0
