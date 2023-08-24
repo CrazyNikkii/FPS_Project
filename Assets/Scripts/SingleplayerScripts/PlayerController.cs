@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float gravity = 20.0f;
     public Camera playerCam;
     public float sensitivity;
-    public float cameraLimit = 45.0f;
+    public float cameraLimit = 90.0f;
     public GameManager gm;
     public float interactionDistance = 3f;
     public LayerMask mask;

@@ -5,6 +5,12 @@ using UnityEngine;
 public class TargetDummyBody : MonoBehaviour
 {
     public float bodyHealth = 100f;
+    public GameManager gm;
+
+    public void Start()
+    {
+
+    }
 
     public void TakeDamageBody(float damage)
     {
@@ -19,5 +25,6 @@ public class TargetDummyBody : MonoBehaviour
     void Die()
     {
         Destroy(transform.parent.gameObject);
+        gm.enemiesLeft--;
     }
 }

@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     public int numberOfDummies = 10;
     public GameObject spawnWallWest;
     public GameObject spawnWallEast;
+    public float enemiesLeft;
+    public float startTimer = 5f;
+    public TextMeshProUGUI startTimerText;
 
     // Pause
     public bool gamePaused = false;
@@ -38,6 +41,7 @@ public class GameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
         }
+        startTimerText.gameObject.SetActive(false);
     }
 
 
@@ -105,6 +109,24 @@ public class GameManager : MonoBehaviour
         promptText.text = promptMessage;
     }
 
+    public void TrainingTestStart()
+    {
+        StartCoroutine(TrainingModeStartRoutine());
+        startTimerText.gameObject.SetActive(true);
+    }
+
+    public IEnumerator TrainingModeStartRoutine()
+    {
+        while (startTimer > 0)
+        {
+            startTimerText.text = startTimer.ToString("0");
+            yield return new WaitForSeconds(1f);
+            startTimer--;
+        }
+        TrainingModeStart();
+        startTimerText.gameObject.SetActive(false);
+    }
+
     // Training GameMode
     public void TrainingModeStart()
     {
@@ -133,8 +155,17 @@ public class GameManager : MonoBehaviour
             Instantiate(trainingDummies, spawnPoints[i].transform.position, Quaternion.identity);
         }
 
+        enemiesLeft = numberOfDummies;
+
         // Remove spawn walls
         Destroy(spawnWallEast.gameObject);
         Destroy(spawnWallWest.gameObject);
+
+        TrainingMode();
+    }
+
+    public void TrainingMode()
+    {
+
     }
 }
