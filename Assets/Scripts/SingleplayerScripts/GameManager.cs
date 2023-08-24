@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
 
     // Training GameMode
     public GameObject trainingDummies;
-    public Transform[] spawnPoints;
     public int numberOfDummies = 10;
 
     // Pause
@@ -98,7 +97,8 @@ public class GameManager : MonoBehaviour
     // Training GameMode
     public void TrainingModeStart()
     {
-        if (spawnPoints.Length < numberOfDummies)
+        GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("DummySpawnPoint");
+        if (spawnPoints.Length == 0)
         {
             Debug.LogWarning("Not enough spawnpoints for the dummies");
             return;
@@ -111,14 +111,14 @@ public class GameManager : MonoBehaviour
         {
             n--;
             int k = dummyRNG.Next(n +1);
-            Transform value = spawnPoints[k];
+            GameObject value = spawnPoints[k];
             spawnPoints[k] = spawnPoints[n];
             spawnPoints[n] = value;
         }
 
         for(int i = 0; i < numberOfDummies; i++)
         {
-            Instantiate(trainingDummies, spawnPoints[i].position, Quaternion.identity);
+            Instantiate(trainingDummies, spawnPoints[i].transform.position, Quaternion.identity);
         }
     }
 }

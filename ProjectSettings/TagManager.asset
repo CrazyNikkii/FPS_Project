@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ReloadText
   - Head
+  - DummySpawnPoint
   layers:
   - Default
   - TransparentFX
