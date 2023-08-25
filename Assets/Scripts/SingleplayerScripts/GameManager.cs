@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI startTimerText;
     public TimerScript timerScript;
     public TextMeshProUGUI enemiesLeftText;
+    public bool trainingModeEnded = false;
 
     // Pause
     public bool gamePaused = false;
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
 
 void Start()
     {
+        timerScript = FindObjectOfType<TimerScript>();
         enemiesLeft = numberOfDummies;
         // Destroys spawnpoint dummies
         var dummys = GameObject.FindGameObjectsWithTag("Dummy");
@@ -87,8 +89,11 @@ void Start()
             }
         }
 
+        if (enemiesLeft <= 0 && !trainingModeEnded)
+        {
+            TrainingModeEnd();
+        }
 
-        
     }
 
     public void Pause()
@@ -183,9 +188,14 @@ void Start()
 
     public void TrainingMode()
     {
-        if (enemiesLeft <= 0)
-        {
-            timerScript.StopTimer();
-        }
+        Debug.Log("TrainingMode called. enemiesLeft:" + enemiesLeft);
+    }
+
+    public void TrainingModeEnd()
+    {
+        Debug.Log("TrainingMode ending");
+        trainingModeEnded = true;
+        timerScript.timerRunning = false;
+        timerScript.StopTimer();
     }
 }
