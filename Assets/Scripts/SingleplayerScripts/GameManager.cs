@@ -20,18 +20,20 @@ public class GameManager : MonoBehaviour
     public int numberOfDummies = 10;
     public GameObject spawnWallWest;
     public GameObject spawnWallEast;
-    public float enemiesLeft;
+    public int enemiesLeft;
     public float startTimer = 5f;
     public TextMeshProUGUI startTimerText;
     public TimerScript timerScript;
+    public TextMeshProUGUI enemiesLeftText;
 
     // Pause
     public bool gamePaused = false;
     public GameObject pauseMenuUI;
     public GameObject settingsUI;
 
-    void Start()
+void Start()
     {
+        enemiesLeft = numberOfDummies;
         // Destroys spawnpoint dummies
         var dummys = GameObject.FindGameObjectsWithTag("Dummy");
         foreach (var dummy in dummys)
@@ -56,6 +58,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        enemiesLeftText.text = enemiesLeft.ToString() + ": Left";
         // FPS counter
         time += Time.deltaTime;
         frameCount++;
@@ -83,10 +86,9 @@ public class GameManager : MonoBehaviour
                 Pause();
             }
         }
-        if(enemiesLeft <= 0)
-        {
-            timerScript.StopTimer();
-        }
+
+
+        
     }
 
     public void Pause()
@@ -139,6 +141,7 @@ public class GameManager : MonoBehaviour
             startTimer--;
         }
         TrainingModeStart();
+        Debug.Log("Enemies left: " + enemiesLeft);
         startTimerText.gameObject.SetActive(false);
     }
 
@@ -170,8 +173,6 @@ public class GameManager : MonoBehaviour
             Instantiate(trainingDummies, spawnPoints[i].transform.position, Quaternion.identity);
         }
 
-        enemiesLeft = 10;
-
         // Remove spawn walls
         Destroy(spawnWallEast.gameObject);
         Destroy(spawnWallWest.gameObject);
@@ -182,6 +183,9 @@ public class GameManager : MonoBehaviour
 
     public void TrainingMode()
     {
-        
+        if (enemiesLeft <= 0)
+        {
+            timerScript.StopTimer();
+        }
     }
 }

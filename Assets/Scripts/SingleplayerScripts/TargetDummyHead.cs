@@ -9,7 +9,9 @@ public class TargetDummyHead : MonoBehaviour
 
     public void Start()
     {
-
+        gm = FindObjectOfType<GameManager>();
+        headHealth = 100f;
+        gm.enemiesLeft = gm.numberOfDummies;
     }
 
 
@@ -26,6 +28,8 @@ public class TargetDummyHead : MonoBehaviour
     void Die()
     {
         gm.enemiesLeft--;
+        Debug.Log("Enemy died. Remaining enemies: " + gm.enemiesLeft);
+        gm.enemiesLeftText.text = gm.enemiesLeft.ToString() + ": Left";
         Destroy(transform.parent.gameObject);
     }
 }

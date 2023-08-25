@@ -38,6 +38,8 @@ public class MainPistolScript : MonoBehaviour
 
     void Start()
     {
+        dummyTargetHead = FindObjectOfType<TargetDummyHead>();
+        dummyTargetBody = FindObjectOfType<TargetDummyBody>();
         gunSound = GetComponent<AudioSource>();
     }
 

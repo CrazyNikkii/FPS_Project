@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
 
 
 
+
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0f;

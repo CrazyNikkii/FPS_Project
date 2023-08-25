@@ -7,8 +7,9 @@ using TMPro;
 public class TimerScript : MonoBehaviour
 {
     public TextMeshProUGUI timerText;
-    private bool timerRunning = false;
-    private float startTime;
+    public bool timerRunning = false;
+    public float startTime;
+
 
     public void StartTimer()
     {
@@ -20,12 +21,17 @@ public class TimerScript : MonoBehaviour
     {
         timerRunning = false;
     }
-    private void Update()
+    public void Update()
     {
         if (timerRunning)
         {
             float currentTime = Time.time - startTime;
-            timerText.text = currentTime.ToString("F2");
+            int seconds = Mathf.FloorToInt(currentTime);
+            int tenths = Mathf.FloorToInt((currentTime - seconds) * 10);
+            int hundreds = Mathf.FloorToInt((currentTime - seconds - tenths * 0.1f) * 100);
+
+            string formattedTime = string.Format("{0:D2}:{1:D1}{2:D1}", seconds, tenths, hundreds);
+            timerText.text = formattedTime;
         }
     }
 }
