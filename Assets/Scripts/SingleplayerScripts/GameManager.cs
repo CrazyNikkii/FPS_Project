@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     public TimerScript timerScript;
     public TextMeshProUGUI enemiesLeftText;
     public bool trainingModeEnded = false;
-    public bool trainingModeStartable;
+    public bool trainingModeRestartable;
 
     // Pause
     public bool gamePaused = false;
@@ -37,9 +37,10 @@ void Start()
     {
         spawnWallEast.SetActive(true);
         spawnWallWest.SetActive(true);
-        trainingModeStartable = true;
+        trainingModeRestartable = false;
         timerScript = FindObjectOfType<TimerScript>();
         enemiesLeft = numberOfDummies;
+        startTimer = 5;
         // Destroys spawnpoint dummies
         var dummys = GameObject.FindGameObjectsWithTag("Dummy");
         foreach (var dummy in dummys)
@@ -139,7 +140,7 @@ void Start()
     {
         StartCoroutine(TrainingModeStartRoutine());
         startTimerText.gameObject.SetActive(true);
-        trainingModeStartable = false;
+        trainingModeRestartable = false;
         spawnWallEast.SetActive(true);
         spawnWallWest.SetActive(true);
     }
@@ -205,7 +206,13 @@ void Start()
         trainingModeEnded = true;
         timerScript.timerRunning = false;
         timerScript.StopTimer();
-        trainingModeStartable = true;
+        trainingModeRestartable = true;
         startTimer = 5;
+    }
+
+    public void RestartScene()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
     }
 }
