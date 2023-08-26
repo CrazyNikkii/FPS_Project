@@ -85,8 +85,8 @@ public class TimerScript : MonoBehaviour
 
     public void UpdateBestTime(float elapsedTime)
     {
-        
-        //float elapsedTime = endTime - startTime;
+
+
 
         float bestTime = PlayerPrefs.GetFloat("BestTime", float.MaxValue);
         if (elapsedTime < bestTime && elapsedTime > 0)
@@ -116,5 +116,3 @@ public class TimerScript : MonoBehaviour
         }
     }
 }
-
-
