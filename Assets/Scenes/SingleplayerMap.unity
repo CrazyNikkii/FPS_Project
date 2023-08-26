@@ -34342,6 +34342,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1990386248}
     - target: {fileID: 3947035784816287489, guid: 15eb3c5b124f7ff4890ea053b0cc79f0, type: 3}
+      propertyPath: numberOfDummies
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3947035784816287489, guid: 15eb3c5b124f7ff4890ea053b0cc79f0, type: 3}
       propertyPath: trainingDummies
       value: 
       objectReference: {fileID: 2194632796493783612, guid: 3d483bcd033bab14d8508b847743ce23, type: 3}

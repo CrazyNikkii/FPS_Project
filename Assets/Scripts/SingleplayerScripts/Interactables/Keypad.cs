@@ -20,8 +20,11 @@ public class Keypad : Interactable
 
     protected override void Interact()
     {
+        if(gm.trainingModeStartable)
+        {
+            gm.TrainingTestStart();
+            Debug.Log("Interacted with " + gameObject.name);
+        }
 
-        gm.TrainingTestStart();
-        Debug.Log("Interacted with " + gameObject.name);
     }
 }

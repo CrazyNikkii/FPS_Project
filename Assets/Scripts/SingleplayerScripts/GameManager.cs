@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public TimerScript timerScript;
     public TextMeshProUGUI enemiesLeftText;
     public bool trainingModeEnded = false;
+    public bool trainingModeStartable;
 
     // Pause
     public bool gamePaused = false;
@@ -34,6 +35,9 @@ public class GameManager : MonoBehaviour
 
 void Start()
     {
+        spawnWallEast.SetActive(true);
+        spawnWallWest.SetActive(true);
+        trainingModeStartable = true;
         timerScript = FindObjectOfType<TimerScript>();
         enemiesLeft = numberOfDummies;
         // Destroys spawnpoint dummies
@@ -135,6 +139,9 @@ void Start()
     {
         StartCoroutine(TrainingModeStartRoutine());
         startTimerText.gameObject.SetActive(true);
+        trainingModeStartable = false;
+        spawnWallEast.SetActive(true);
+        spawnWallWest.SetActive(true);
     }
 
     public IEnumerator TrainingModeStartRoutine()
@@ -153,6 +160,7 @@ void Start()
     // Training GameMode
     public void TrainingModeStart()
     {
+        Debug.Log("trainingmodestart called");
         // Spawn Dummies
         GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("DummySpawnPoint");
         if (spawnPoints.Length < numberOfDummies )
@@ -179,8 +187,8 @@ void Start()
         }
 
         // Remove spawn walls
-        Destroy(spawnWallEast.gameObject);
-        Destroy(spawnWallWest.gameObject);
+        spawnWallEast.SetActive(false);
+        spawnWallWest.SetActive(false);
 
         timerScript.StartTimer();
         TrainingMode();
@@ -197,5 +205,7 @@ void Start()
         trainingModeEnded = true;
         timerScript.timerRunning = false;
         timerScript.StopTimer();
+        trainingModeStartable = true;
+        startTimer = 5;
     }
 }
