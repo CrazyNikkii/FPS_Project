@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     // Training GameMode
     public GameObject trainingDummies;
-    public int numberOfDummies = 10;
+    public int numberOfDummies;
     public GameObject spawnWallWest;
     public GameObject spawnWallEast;
     public int enemiesLeft;
