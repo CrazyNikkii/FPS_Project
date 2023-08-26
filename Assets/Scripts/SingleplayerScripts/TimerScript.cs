@@ -12,11 +12,14 @@ public class TimerScript : MonoBehaviour
     public float startTime;
     public float endTime;
     public GameManager gm;
+    public float bestTime;
 
     public void Start()
     {
         gm = FindObjectOfType<GameManager>();
-        UpdateBestTime();
+        bestTime = PlayerPrefs.GetFloat("BestTime", float.MaxValue);
+        UpdateBestTimeUI(bestTime);
+        Debug.Log("Best time:" + bestTime);
     }
 
     public void StartTimer()
@@ -30,7 +33,8 @@ public class TimerScript : MonoBehaviour
         timerRunning = false;
         endTime = Time.time;
         DisplayFinalTime();
-        UpdateBestTime();
+        float elapsedTime = endTime - startTime;
+        UpdateBestTime(elapsedTime);
     }
 
     public void Update()
@@ -79,17 +83,21 @@ public class TimerScript : MonoBehaviour
         }
     }
 
-    public void UpdateBestTime()
+    public void UpdateBestTime(float elapsedTime)
     {
-        float elapsedTime = endTime - startTime;
+        
+        //float elapsedTime = endTime - startTime;
 
         float bestTime = PlayerPrefs.GetFloat("BestTime", float.MaxValue);
-        if (elapsedTime < bestTime)
+        if (elapsedTime < bestTime && elapsedTime > 0)
         {
             bestTime = elapsedTime;
             PlayerPrefs.SetFloat("BestTime", bestTime);
+            PlayerPrefs.Save();
             UpdateBestTimeUI(bestTime);
         }
+        Debug.Log("Best Time IS: " + bestTime);
+        PlayerPrefs.Save();
     }
 
     public void UpdateBestTimeUI(float timeInSeconds)
