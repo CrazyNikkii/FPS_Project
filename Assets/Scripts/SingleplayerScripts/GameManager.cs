@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI enemiesLeftText;
     public bool trainingModeEnded = false;
     public bool trainingModeRestartable;
+    public GameObject dummyContainer;
 
     // Pause
     public bool gamePaused = false;
@@ -187,7 +188,8 @@ void Start()
 
         for(int i = 0; i < numberOfDummies; i++)
         {
-            Instantiate(trainingDummies, spawnPoints[i].transform.position, Quaternion.identity);
+            GameObject dummies = Instantiate(trainingDummies, spawnPoints[i].transform.position, Quaternion.identity);
+            dummies.transform.SetParent(dummyContainer.transform);
         }
 
         // Remove spawn walls

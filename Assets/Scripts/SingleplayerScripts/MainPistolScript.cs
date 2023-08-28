@@ -130,6 +130,7 @@ public class MainPistolScript : MonoBehaviour
                 bH.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
                 float randomBHRot = Random.Range(0f, 360f);
                 bH.transform.Rotate(0, randomBHRot, 0f);
+                bH.transform.SetParent(bHContainer.transform);
                 Destroy(bH, 5f);
             }
 
