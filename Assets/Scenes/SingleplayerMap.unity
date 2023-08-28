@@ -34470,6 +34470,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3947035784816287489, guid: 15eb3c5b124f7ff4890ea053b0cc79f0, type: 3}
+      propertyPath: hud
+      value: 
+      objectReference: {fileID: 1462400845}
+    - target: {fileID: 3947035784816287489, guid: 15eb3c5b124f7ff4890ea053b0cc79f0, type: 3}
       propertyPath: fpsText
       value: 
       objectReference: {fileID: 1695979975}
@@ -36039,6 +36043,10 @@ PrefabInstance:
       propertyPath: gm
       value: 
       objectReference: {fileID: 274053554}
+    - target: {fileID: 7775684264839156699, guid: f914f92e678e445409c36f0bc6d05765, type: 3}
+      propertyPath: maxAmmo
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7775684264839156699, guid: f914f92e678e445409c36f0bc6d05765, type: 3}
       propertyPath: reloadingText
       value: 
