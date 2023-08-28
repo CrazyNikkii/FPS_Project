@@ -5,13 +5,13 @@ using TMPro;
 
 public class MainPistolScript : MonoBehaviour
 {
-    // Stats
+    // Weapon statistics
     [SerializeField] private float timeBetweenShooting, reloadTime, timeBetweenShots;
     [SerializeField] private int magazineSize, bulletsPerTap;
     [SerializeField] private bool allowButtonDown;
     int bulletsLeft, bulletsShot;
     public float damage = 50f;
-    public int maxAmmo;
+    public int maxAmmo = 20;
     public int totalAmmo;
 
     // States
@@ -54,7 +54,7 @@ public class MainPistolScript : MonoBehaviour
 
     void Update()
     {
-        MainPistolActions();
+        CheckMainPistolActions();
 
         // HUD ammocounter
         if (ammunitionDisplay != null)
@@ -78,7 +78,7 @@ public class MainPistolScript : MonoBehaviour
         }
     }
 
-    void MainPistolActions()
+    void CheckMainPistolActions()
     {
         // Shooting button
         shooting = Input.GetKeyDown(KeyCode.Mouse0);
@@ -123,6 +123,7 @@ public class MainPistolScript : MonoBehaviour
             // If not hitting a dummy, make a bullet hole
             else
             {
+                // Instantiate the bullet hole on the hit point of the raycast, offset by 0.001 to avoid clipping
                 GameObject bH = Instantiate(bulletHole, hit.point + hit.normal * 0.001f, Quaternion.identity) as GameObject;
                 bH.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
                 float randomBHRot = Random.Range(0f, 360f);
@@ -158,7 +159,7 @@ public class MainPistolScript : MonoBehaviour
 
     void ReloadMainPistol()
     {
-        // Start reload state
+        // Start reloading state
         reloading = true;
         reloadingText.SetText("Reloading...");
 
@@ -169,10 +170,19 @@ public class MainPistolScript : MonoBehaviour
 
     public void ReloadMainPistolFinished()
     {
-        // Decrease total ammo left for each bullet realoaded in the magazine
-        totalAmmo = totalAmmo - (magazineSize - bulletsLeft);
-        bulletsLeft = magazineSize;
-        
+        int reloadedAmmo = magazineSize - bulletsLeft;
+
+        if (reloadedAmmo < totalAmmo)
+        {
+            bulletsLeft = magazineSize;
+        }
+        else
+        {
+            reloadedAmmo = totalAmmo;
+            bulletsLeft = reloadedAmmo;
+        }
+        totalAmmo = totalAmmo - reloadedAmmo;
+
         // End reloading state
         reloading = false;
         reloadingText.SetText("");
