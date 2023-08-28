@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -36340,6 +36340,10 @@ PrefabInstance:
       propertyPath: maxAmmo
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 7775684264839156699, guid: f914f92e678e445409c36f0bc6d05765, type: 3}
+      propertyPath: bulletHole
+      value: 
+      objectReference: {fileID: 25599160655038663, guid: c8f0859d1ee6e29409f16f88d17f71e4, type: 3}
     - target: {fileID: 7775684264839156699, guid: f914f92e678e445409c36f0bc6d05765, type: 3}
       propertyPath: reloadingText
       value: 

@@ -27,6 +27,7 @@ public class MainPistolScript : MonoBehaviour
     public TargetDummyBody dummyTargetBody;
     public TargetDummyHead dummyTargetHead;
     public ParticleSystem muzzleFlash;
+    public GameObject bHContainer;
 
     // HUD
     public TextMeshProUGUI ammunitionDisplay;
@@ -123,7 +124,8 @@ public class MainPistolScript : MonoBehaviour
             // If not hitting a dummy, make a bullet hole
             else
             {
-                // Instantiate the bullet hole on the hit point of the raycast, offset by 0.001 to avoid clipping
+               
+                //Instantiate the bullet hole on the hit point of the raycast, offset by 0.001 to avoid clipping
                 GameObject bH = Instantiate(bulletHole, hit.point + hit.normal * 0.001f, Quaternion.identity) as GameObject;
                 bH.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
                 float randomBHRot = Random.Range(0f, 360f);
