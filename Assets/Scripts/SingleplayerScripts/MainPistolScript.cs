@@ -5,16 +5,20 @@ using TMPro;
 
 public class MainPistolScript : MonoBehaviour
 {
+    // Stats
     [SerializeField] private float timeBetweenShooting, reloadTime, timeBetweenShots;
     [SerializeField] private int magazineSize, bulletsPerTap;
     [SerializeField] private bool allowButtonDown;
     int bulletsLeft, bulletsShot;
     public float damage = 50f;
+    public int maxAmmo;
     public int totalAmmo;
 
+    // States
     bool shooting, readyToShoot, reloading;
-
     public bool totalAmmoLeft;
+
+    // References
     public Camera aimCam;
     public AudioSource gunSound;
     public AudioClip gunSoundClip;
@@ -22,17 +26,20 @@ public class MainPistolScript : MonoBehaviour
     public GameManager gm;
     public TargetDummyBody dummyTargetBody;
     public TargetDummyHead dummyTargetHead;
-
     public ParticleSystem muzzleFlash;
+
+    // HUD
     public TextMeshProUGUI ammunitionDisplay;
     public TextMeshProUGUI totalAmmunitionDisplay;
     public TextMeshProUGUI reloadingText;
 
+    // Debugging
     public bool allowInvoke = true;
 
     void Awake()
     {
-        totalAmmo = 30;
+        // Set ammo values to max and set the right state
+        totalAmmo = maxAmmo;
         totalAmmoLeft = true;
         bulletsLeft = magazineSize;
         readyToShoot = true;
@@ -41,6 +48,7 @@ public class MainPistolScript : MonoBehaviour
 
     void Start()
     {
+        // Sound reference
         gunSound = GetComponent<AudioSource>();
     }
 
@@ -48,6 +56,7 @@ public class MainPistolScript : MonoBehaviour
     {
         MainPistolActions();
 
+        // HUD ammocounter
         if (ammunitionDisplay != null)
         {
             ammunitionDisplay.SetText(bulletsLeft / bulletsPerTap + "/" + magazineSize / bulletsPerTap);
@@ -58,6 +67,7 @@ public class MainPistolScript : MonoBehaviour
             totalAmmunitionDisplay.SetText(totalAmmo + "");
         }
 
+        // Check if any ammo left
         if (totalAmmo <= 0)
         {
             totalAmmoLeft = false;
@@ -70,13 +80,16 @@ public class MainPistolScript : MonoBehaviour
 
     void MainPistolActions()
     {
+        // Shooting button
         shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
+        // Reload button and reload if trying to shoot with empty magazine
         if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading && totalAmmoLeft)
             ReloadMainPistol();
         if (readyToShoot && shooting && !reloading && bulletsLeft <= 0 && totalAmmoLeft)
             ReloadMainPistol();
 
+        // Shoot if ammoleft in magazine
         if (readyToShoot && shooting && !reloading && bulletsLeft > 0 && gm.gamePaused == false)
         {
             bulletsShot = 0;
@@ -86,11 +99,14 @@ public class MainPistolScript : MonoBehaviour
 
     void ShootMainPistol()
     {
+        // Set state
         readyToShoot = false;
 
+        // Raycast
         Vector3 rayOrigin = aimCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
         RaycastHit hit;
 
+        // Check if raycast hits a dummy, headshot x2 damage
         if (Physics.Raycast(rayOrigin, aimCam.transform.forward, out hit))
         {
             TargetDummyHead targetDummyHead = hit.transform.GetComponent<TargetDummyHead>();
@@ -104,6 +120,7 @@ public class MainPistolScript : MonoBehaviour
                 targetDummyBody.TakeDamageBody(damage);
             }
 
+            // If not hitting a dummy, make a bullet hole
             else
             {
                 GameObject bH = Instantiate(bulletHole, hit.point + hit.normal * 0.001f, Quaternion.identity) as GameObject;
@@ -116,12 +133,15 @@ public class MainPistolScript : MonoBehaviour
             
         }
 
+        // Play sound and muzzleflash
         muzzleFlash.Play();
         gunSound.PlayOneShot(gunSoundClip, 1f);
 
+        // Decrease ammonition left
         bulletsLeft--;
         bulletsShot++;
-
+        
+        // Debugging
         if (allowInvoke)
         {
             Invoke("ResetShot", timeBetweenShooting);
@@ -131,22 +151,29 @@ public class MainPistolScript : MonoBehaviour
 
     public void ResetShot()
     {
+        // Set states
         readyToShoot = true;
         allowInvoke = true;
     }
 
     void ReloadMainPistol()
     {
+        // Start reload state
         reloading = true;
         reloadingText.SetText("Reloading...");
+
+        // Wait for reloading time, then call finishing
         Invoke("ReloadMainPistolFinished", reloadTime);
         Debug.Log("Reloading");
     }
 
     public void ReloadMainPistolFinished()
     {
+        // Decrease total ammo left for each bullet realoaded in the magazine
         totalAmmo = totalAmmo - (magazineSize - bulletsLeft);
         bulletsLeft = magazineSize;
+        
+        // End reloading state
         reloading = false;
         reloadingText.SetText("");
         Debug.Log("Reloading Finished");
