@@ -11,7 +11,7 @@ public class GunController : MonoBehaviour
 
     // Stats
     public float timeBetweenShooting, spread, reloadTime, timeBetweenShots;
-    public int magazineSize, bulletsPerTap;
+    public int magazineSize, maxAmmo, bulletsPerTap;
     public bool allowButtonDown;
     int bulletsLeft, bulletsShot;
 

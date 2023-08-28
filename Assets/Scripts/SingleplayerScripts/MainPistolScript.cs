@@ -10,13 +10,14 @@ public class MainPistolScript : MonoBehaviour
     [SerializeField] private bool allowButtonDown;
     int bulletsLeft, bulletsShot;
     public float damage = 50f;
+    public int totalAmmo;
 
     bool shooting, readyToShoot, reloading;
-    
+
+    public bool totalAmmoLeft;
     public Camera aimCam;
     public AudioSource gunSound;
     public AudioClip gunSoundClip;
-    public GameObject reloadingText;
     public GameObject bulletHole;
     public GameManager gm;
     public TargetDummyBody dummyTargetBody;
@@ -24,16 +25,18 @@ public class MainPistolScript : MonoBehaviour
 
     public ParticleSystem muzzleFlash;
     public TextMeshProUGUI ammunitionDisplay;
+    public TextMeshProUGUI totalAmmunitionDisplay;
+    public TextMeshProUGUI reloadingText;
 
     public bool allowInvoke = true;
 
     void Awake()
     {
-        reloadingText = GameObject.FindWithTag("ReloadText");
+        totalAmmo = 30;
+        totalAmmoLeft = true;
         bulletsLeft = magazineSize;
         readyToShoot = true;
-        reloadingText.SetActive(false);
-
+        reloadingText.SetText("");
     }
 
     void Start()
@@ -46,16 +49,32 @@ public class MainPistolScript : MonoBehaviour
         MainPistolActions();
 
         if (ammunitionDisplay != null)
+        {
             ammunitionDisplay.SetText(bulletsLeft / bulletsPerTap + "/" + magazineSize / bulletsPerTap);
+        }
+
+        if (totalAmmunitionDisplay != null)
+        {
+            totalAmmunitionDisplay.SetText(totalAmmo + "");
+        }
+
+        if (totalAmmo <= 0)
+        {
+            totalAmmoLeft = false;
+        }
+        else
+        {
+            totalAmmoLeft = true;
+        }
     }
 
     void MainPistolActions()
     {
         shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
-        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading)
+        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading && totalAmmoLeft)
             ReloadMainPistol();
-        if (readyToShoot && shooting && !reloading && bulletsLeft <= 0)
+        if (readyToShoot && shooting && !reloading && bulletsLeft <= 0 && totalAmmoLeft)
             ReloadMainPistol();
 
         if (readyToShoot && shooting && !reloading && bulletsLeft > 0 && gm.gamePaused == false)
@@ -119,16 +138,17 @@ public class MainPistolScript : MonoBehaviour
     void ReloadMainPistol()
     {
         reloading = true;
-        reloadingText.SetActive(true);
+        reloadingText.SetText("Reloading...");
         Invoke("ReloadMainPistolFinished", reloadTime);
         Debug.Log("Reloading");
     }
 
     public void ReloadMainPistolFinished()
     {
+        totalAmmo = totalAmmo - (magazineSize - bulletsLeft);
         bulletsLeft = magazineSize;
         reloading = false;
-        reloadingText.SetActive(false);
+        reloadingText.SetText("");
         Debug.Log("Reloading Finished");
     }
 }
