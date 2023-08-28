@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     public bool gamePaused = false;
     public GameObject pauseMenuUI;
     public GameObject settingsUI;
+    public GameObject hud;
 
 void Start()
     {
@@ -104,6 +105,7 @@ void Start()
     public void Pause()
     {
         pauseMenuUI.SetActive(true);
+        hud.SetActive(false);
         Time.timeScale = 0f;
         gamePaused = true;
         Cursor.lockState = CursorLockMode.Confined;
@@ -113,6 +115,7 @@ void Start()
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
+        hud.SetActive(true);
         Time.timeScale = 1f;
         gamePaused = false;
         Cursor.lockState = CursorLockMode.Locked;
