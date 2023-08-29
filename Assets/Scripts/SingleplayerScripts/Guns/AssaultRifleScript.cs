@@ -8,15 +8,18 @@ public class AssaultRifleScript : MonoBehaviour
     // Weapon statistics
     [SerializeField] private float timeBetweenShooting, reloadTime, timeBetweenShots;
     [SerializeField] private int magazineSize, bulletsPerTap;
-    [SerializeField] private bool allowButtonDown;
+    [SerializeField] private bool fullAutoMode;
     int ammoLeftInARMag, aRBulletsShot;
     public float aRDamage = 50f;
     public int aRMaxAmmo = 20;
     public int aRTotalAmmo;
+    public float scopedFOV = 15f;
+    private float normalFOV;
 
     // States
     bool aRShooting, aRReadyToShoot, aRReloading;
     public bool aRTotalAmmoLeft;
+    public bool aDS = false;
 
     // References
     public Camera aimCam;
@@ -28,6 +31,8 @@ public class AssaultRifleScript : MonoBehaviour
     public TargetDummyHead dummyTargetHead;
     public ParticleSystem muzzleFlash;
     public GameObject bHContainer;
+    public Animator animator;
+    public GameObject scopeRedDot;
 
     // HUD
     public TextMeshProUGUI ammunitionDisplay;
@@ -57,12 +62,34 @@ public class AssaultRifleScript : MonoBehaviour
     {
         CheckMainPistolActions();
 
-        // HUD ammocounter
+        if (Input.GetButtonDown("Fire2"))
+        {
+            aDS = !aDS;
+            animator.SetBool("aimingDownSight", aDS);
+
+            if (aDS)
+            {
+                StartCoroutine(AimingDownSight());
+            }
+            else
+            {
+                UnAimingDownSight();
+            }
+        }
+
+        // Toggle Firemode
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            fullAutoMode = !fullAutoMode;
+        }
+
+        // HUD magazine ammo counter
         if (ammunitionDisplay != null)
         {
             ammunitionDisplay.SetText(ammoLeftInARMag / bulletsPerTap + "/" + magazineSize / bulletsPerTap);
         }
 
+        //  HUD total ammo counter
         if (totalAmmunitionDisplay != null)
         {
             totalAmmunitionDisplay.SetText(aRTotalAmmo + "");
@@ -81,7 +108,7 @@ public class AssaultRifleScript : MonoBehaviour
 
     void CheckMainPistolActions()
     {
-        if (allowButtonDown) aRShooting = Input.GetKey(KeyCode.Mouse0);
+        if (fullAutoMode) aRShooting = Input.GetKey(KeyCode.Mouse0);
         else aRShooting = Input.GetKeyDown(KeyCode.Mouse0);
 
         // Reload button and reload if trying to shoot with empty magazine
@@ -114,7 +141,7 @@ public class AssaultRifleScript : MonoBehaviour
             TargetDummyBody targetDummyBody = hit.transform.GetComponent<TargetDummyBody>();
             if (targetDummyHead != null)
             {
-                targetDummyHead.TakeDamageHead(aRDamage * 2);
+                targetDummyHead.TakeDamageHead(aRDamage * 3);
             }
             else if (targetDummyBody != null)
             {
@@ -138,7 +165,7 @@ public class AssaultRifleScript : MonoBehaviour
         }
 
         // Play sound and muzzleflash
-        //muzzleFlash.Play();
+        muzzleFlash.Play();
         gunSound.PlayOneShot(gunSoundClip, 1f);
 
         // Decrease ammonition left
@@ -151,6 +178,20 @@ public class AssaultRifleScript : MonoBehaviour
             Invoke("ResetShot", timeBetweenShooting);
             allowInvoke = false;
         }
+    }
+
+    IEnumerator AimingDownSight()
+    {
+        yield return new WaitForSeconds(.10f);
+        normalFOV = aimCam.fieldOfView;
+        aimCam.fieldOfView = scopedFOV;
+        scopeRedDot.SetActive(true);
+    }
+
+    public void UnAimingDownSight()
+    {
+        aimCam.fieldOfView = normalFOV;
+        scopeRedDot.SetActive(false);
     }
 
     public void ResetShot()
@@ -173,8 +214,10 @@ public class AssaultRifleScript : MonoBehaviour
 
     public void ReloadMainPistolFinished()
     {
+        // Count how many bullets were loaded into the magazine
         int reloadedAmmo = magazineSize - ammoLeftInARMag;
 
+        // Fully loads the magazine if player has enough total ammo left. Otherwise loads all the ammo player has left into the magazine
         if (reloadedAmmo < aRTotalAmmo)
         {
             ammoLeftInARMag = magazineSize;
@@ -184,6 +227,7 @@ public class AssaultRifleScript : MonoBehaviour
             reloadedAmmo = aRTotalAmmo;
             ammoLeftInARMag = reloadedAmmo;
         }
+        // Decrease total ammo by the amount of ammo reloaded into the magazine
         aRTotalAmmo = aRTotalAmmo - reloadedAmmo;
 
         // End reloading state
