@@ -169,8 +169,9 @@ public class MainPistolScript : MonoBehaviour
             
         }
 
-        // Play sound and muzzleflash
+        // Play sound, muzzleflash and animation
         muzzleFlash.Play();
+        animator.SetBool("pistolShoot", true);
         gunSound.PlayOneShot(gunSoundClip, 1f);
 
         // Decrease ammonition left
@@ -189,6 +190,7 @@ public class MainPistolScript : MonoBehaviour
     {
         // Set states
         readyToShoot = true;
+        animator.SetBool("pistolShoot", false);
         allowInvoke = true;
     }
 
