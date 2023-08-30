@@ -13,10 +13,13 @@ public class MainPistolScript : MonoBehaviour
     public float damage = 50f;
     public int maxAmmo = 20;
     public int totalAmmo;
+    public float normalFOV;
+    public float scopedFOV = 50f;
 
     // States
     bool shooting, readyToShoot, reloading;
     public bool totalAmmoLeft;
+    public bool aDS = false;
 
     // References
     public Camera aimCam;
@@ -28,6 +31,7 @@ public class MainPistolScript : MonoBehaviour
     public TargetDummyHead dummyTargetHead;
     public ParticleSystem muzzleFlash;
     public GameObject bHContainer;
+    public Animator animator;
 
     // HUD
     public TextMeshProUGUI ammunitionDisplay;
@@ -56,6 +60,21 @@ public class MainPistolScript : MonoBehaviour
     void Update()
     {
         CheckMainPistolActions();
+
+        if (Input.GetButtonDown("Fire2"))
+        {
+            aDS = !aDS;
+            animator.SetBool("pistolADS", aDS);
+
+            if (aDS)
+            {
+                StartCoroutine(AimingDownSight());
+            }
+            else
+            {
+                UnAimingDownSight();
+            }
+        }
 
         // HUD ammocounter
         if (ammunitionDisplay != null)
@@ -96,6 +115,18 @@ public class MainPistolScript : MonoBehaviour
             bulletsShot = 0;
             ShootMainPistol();
         }
+    }
+
+    IEnumerator AimingDownSight()
+    {
+        yield return new WaitForSeconds(.10f);
+        normalFOV = aimCam.fieldOfView;
+        aimCam.fieldOfView = scopedFOV;
+    }
+
+    public void UnAimingDownSight()
+    {
+        aimCam.fieldOfView = normalFOV;
     }
 
     void ShootMainPistol()

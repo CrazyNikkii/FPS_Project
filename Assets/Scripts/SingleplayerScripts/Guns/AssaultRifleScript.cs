@@ -191,6 +191,7 @@ public class AssaultRifleScript : MonoBehaviour
 
     public void UnAimingDownSight()
     {
+        Debug.Log("Unaiming called");
         aimCam.fieldOfView = normalFOV;
         scopeRedDot.SetActive(false);
     }

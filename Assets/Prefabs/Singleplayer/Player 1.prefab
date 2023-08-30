@@ -195,8 +195,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5474385925061267687}
   - {fileID: 8155026379714363507}
+  - {fileID: 5474385925061267687}
   m_Father: {fileID: 713960701914075698}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5809425202684204047
@@ -871,7 +871,10 @@ MonoBehaviour:
   damage: 20
   maxAmmo: 24
   totalAmmo: 0
+  normalFOV: 0
+  scopedFOV: 50
   totalAmmoLeft: 0
+  aDS: 0
   aimCam: {fileID: 1686159203547920180}
   gunSound: {fileID: 8708494719037160247}
   gunSoundClip: {fileID: 8300000, guid: 28a5654e631d0ee4387f4f5fd61454b8, type: 3}
@@ -881,6 +884,7 @@ MonoBehaviour:
   dummyTargetHead: {fileID: 0}
   muzzleFlash: {fileID: 1073686127764367546}
   bHContainer: {fileID: 0}
+  animator: {fileID: 0}
   ammunitionDisplay: {fileID: 0}
   totalAmmunitionDisplay: {fileID: 0}
   reloadingText: {fileID: 0}
@@ -996,7 +1000,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5474385925061267687
 Transform:
   m_ObjectHideFlags: 0
@@ -1031,7 +1035,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1117582899397640, guid: 689946d975a0e55449b1e7ae41933e73, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1426050648627750, guid: 689946d975a0e55449b1e7ae41933e73, type: 3}
       propertyPath: m_Layer
