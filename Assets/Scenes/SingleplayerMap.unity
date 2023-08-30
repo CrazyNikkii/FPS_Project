@@ -19657,6 +19657,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &669717588 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8922957808009271217, guid: f914f92e678e445409c36f0bc6d05765, type: 3}
+  m_PrefabInstance: {fileID: 1011824961}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &672775787
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23182,7 +23187,7 @@ PrefabInstance:
     - target: {fileID: 488568283786405515, guid: f914f92e678e445409c36f0bc6d05765, type: 3}
       propertyPath: scopeRedDot
       value: 
-      objectReference: {fileID: 1158530155}
+      objectReference: {fileID: 669717588}
     - target: {fileID: 488568283786405515, guid: f914f92e678e445409c36f0bc6d05765, type: 3}
       propertyPath: audioManager
       value: 
@@ -23211,6 +23216,18 @@ PrefabInstance:
       propertyPath: totalAmmunitionDisplay
       value: 
       objectReference: {fileID: 1815459106}
+    - target: {fileID: 1073686127764367546, guid: f914f92e678e445409c36f0bc6d05765, type: 3}
+      propertyPath: LightsModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073686127764367546, guid: f914f92e678e445409c36f0bc6d05765, type: 3}
+      propertyPath: LightsModule.rangeCurve.scalar
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073686127764367546, guid: f914f92e678e445409c36f0bc6d05765, type: 3}
+      propertyPath: LightsModule.intensityCurve.scalar
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 3087553517000383323, guid: f914f92e678e445409c36f0bc6d05765, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -23255,9 +23272,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5474385925061267687, guid: f914f92e678e445409c36f0bc6d05765, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.03
+      objectReference: {fileID: 0}
     - target: {fileID: 5809425202684204047, guid: f914f92e678e445409c36f0bc6d05765, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6035412032884560356, guid: f914f92e678e445409c36f0bc6d05765, type: 3}
+      propertyPath: LightsModule.rangeCurve.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6035412032884560356, guid: f914f92e678e445409c36f0bc6d05765, type: 3}
+      propertyPath: LightsModule.intensityCurve.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6044959805168519485, guid: f914f92e678e445409c36f0bc6d05765, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7051853116879402656, guid: f914f92e678e445409c36f0bc6d05765, type: 3}
       propertyPath: m_Name
@@ -23267,6 +23300,10 @@ PrefabInstance:
       propertyPath: gm
       value: 
       objectReference: {fileID: 274053554}
+    - target: {fileID: 8155026379714363507, guid: f914f92e678e445409c36f0bc6d05765, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.03
+      objectReference: {fileID: 0}
     - target: {fileID: 8627786100149558978, guid: f914f92e678e445409c36f0bc6d05765, type: 3}
       propertyPath: gm
       value: 
@@ -23309,7 +23346,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9191083751295353134, guid: f914f92e678e445409c36f0bc6d05765, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8708494719037160247, guid: f914f92e678e445409c36f0bc6d05765, type: 3}
@@ -24526,81 +24563,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6842927627995309949, guid: 3d483bcd033bab14d8508b847743ce23, type: 3}
   m_PrefabInstance: {fileID: 1158128726}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1158530155
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1158530156}
-  - component: {fileID: 1158530158}
-  - component: {fileID: 1158530157}
-  m_Layer: 5
-  m_Name: RedDot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &1158530156
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1158530155}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.98625, y: 0.98625, z: 0.98625}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1462400846}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 5, y: 5}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1158530157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1158530155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0.017126083, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1158530158
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1158530155}
-  m_CullTransparentMesh: 1
 --- !u!1 &1162697123
 GameObject:
   m_ObjectHideFlags: 0
@@ -27460,7 +27422,6 @@ Transform:
   - {fileID: 1463824993}
   - {fileID: 2012288800}
   - {fileID: 1968827308}
-  - {fileID: 1158530156}
   - {fileID: 1099774206}
   - {fileID: 1545364552}
   - {fileID: 1990386247}

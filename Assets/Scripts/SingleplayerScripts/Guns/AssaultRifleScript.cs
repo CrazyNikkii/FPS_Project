@@ -169,6 +169,7 @@ public class AssaultRifleScript : MonoBehaviour
 
         // Play sound and muzzleflash
         muzzleFlash.Play();
+        animator.SetTrigger("arShoot");
         gunSound.PlayOneShot(gunSoundClip, 1f);
 
         // Decrease ammonition left
