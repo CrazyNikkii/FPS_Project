@@ -171,7 +171,7 @@ public class MainPistolScript : MonoBehaviour
 
         // Play sound, muzzleflash and animation
         muzzleFlash.Play();
-        animator.SetBool("pistolShoot", true);
+        animator.SetTrigger("pistolShoot");
         gunSound.PlayOneShot(gunSoundClip, 1f);
 
         // Decrease ammonition left
