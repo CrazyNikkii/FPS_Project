@@ -44,18 +44,19 @@ public class AssaultRifleScript : MonoBehaviour
 
     void Awake()
     {
-        // Set ammo values to max and set the right state
-        aRTotalAmmo = aRMaxAmmo;
-        aRTotalAmmoLeft = true;
-        ammoLeftInARMag = magazineSize;
-        aRReadyToShoot = true;
-        reloadingText.SetText("");
+        
     }
 
     void Start()
     {
         // Sound reference
         gunSound = GetComponent<AudioSource>();
+        // Set ammo values to max and set the right state
+        aRTotalAmmo = aRMaxAmmo;
+        aRTotalAmmoLeft = true;
+        ammoLeftInARMag = magazineSize;
+        aRReadyToShoot = true;
+        reloadingText.SetText("");
     }
 
     void Update()
