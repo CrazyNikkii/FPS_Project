@@ -25,6 +25,7 @@ public class MainPistolScript : MonoBehaviour
     public Camera aimCam;
     public AudioSource gunSound;
     public AudioClip gunSoundClip;
+    public GameObject audioManager;
     public GameObject bulletHole;
     public GameManager gm;
     public TargetDummyBody dummyTargetBody;
@@ -54,7 +55,7 @@ public class MainPistolScript : MonoBehaviour
     void Start()
     {
         // Sound reference
-        gunSound = GetComponent<AudioSource>();
+        gunSound = audioManager.GetComponent<AudioSource>();
     }
 
     void Update()

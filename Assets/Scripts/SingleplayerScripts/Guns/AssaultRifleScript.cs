@@ -25,6 +25,7 @@ public class AssaultRifleScript : MonoBehaviour
     public Camera aimCam;
     public AudioSource gunSound;
     public AudioClip gunSoundClip;
+    public GameObject audioManager;
     public GameObject bulletHole;
     public GameManager gm;
     public TargetDummyBody dummyTargetBody;
@@ -57,6 +58,7 @@ public class AssaultRifleScript : MonoBehaviour
         ammoLeftInARMag = magazineSize;
         aRReadyToShoot = true;
         reloadingText.SetText("");
+        gunSound = audioManager.GetComponent<AudioSource>();
     }
 
     void Update()
