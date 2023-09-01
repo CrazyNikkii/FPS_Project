@@ -36,6 +36,7 @@ public class AssaultRifleScript : MonoBehaviour
     public Animator animator;
     public GameObject scopeRedDot;
     public PlayerController pC;
+    public GameObject flashLight;
 
     // HUD
     public TextMeshProUGUI ammunitionDisplay;
@@ -60,7 +61,7 @@ public class AssaultRifleScript : MonoBehaviour
 
     void Update()
     {
-        CheckMainPistolActions();
+        CheckAssaultRifleActions();
 
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
@@ -106,26 +107,38 @@ public class AssaultRifleScript : MonoBehaviour
         }
     }
 
-    void CheckMainPistolActions()
+    void CheckAssaultRifleActions()
     {
         if (fullAutoMode) aRShooting = Input.GetKey(KeyCode.Mouse0);
         else aRShooting = Input.GetKeyDown(KeyCode.Mouse0);
 
         // Reload button and reload if trying to shoot with empty magazine
         if (Input.GetKeyDown(KeyCode.R) && ammoLeftInARMag < magazineSize && !aRReloading && aRTotalAmmoLeft)
-            ReloadMainPistol();
+            ReloadAssaultRifle();
         if (aRReadyToShoot && aRShooting && !aRReloading && ammoLeftInARMag <= 0 && aRTotalAmmoLeft)
-            ReloadMainPistol();
+            ReloadAssaultRifle();
+
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            if(flashLight.activeInHierarchy)
+            {
+                flashLight.SetActive(false);
+            }
+            else
+            {
+                flashLight.SetActive(true);
+            }
+        }
 
         // Shoot if ammoleft in magazine
         if (aRReadyToShoot && aRShooting && !aRReloading && ammoLeftInARMag > 0 && gm.gamePaused == false)
         {
             aRBulletsShot = 0;
-            ShootMainPistol();
+            ShootAssaultRifle();
         }
     }
 
-    void ShootMainPistol()
+    void ShootAssaultRifle()
     {
         // Set state
         aRReadyToShoot = false;
@@ -213,7 +226,7 @@ public class AssaultRifleScript : MonoBehaviour
         allowInvoke = true;
     }
 
-    void ReloadMainPistol()
+    void ReloadAssaultRifle()
     {
         // Start reloading state
         aRReloading = true;
