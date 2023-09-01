@@ -20,6 +20,7 @@ public class MainPistolScript : MonoBehaviour
     bool shooting, readyToShoot, reloading;
     public bool totalAmmoLeft;
     public bool aDS = false;
+    public bool mainPistolStillActive;
 
     // References
     public Camera aimCam;
@@ -207,22 +208,43 @@ public class MainPistolScript : MonoBehaviour
 
     public void ReloadMainPistolFinished()
     {
-        int reloadedAmmo = magazineSize - ammoLeftInMag;
-
-        if (reloadedAmmo < totalAmmo)
+        if(mainPistolStillActive)
         {
-            ammoLeftInMag = magazineSize;
-        }
-        else
-        {
-            reloadedAmmo = totalAmmo;
-            ammoLeftInMag = reloadedAmmo;
-        }
-        totalAmmo = totalAmmo - reloadedAmmo;
+            int reloadedAmmo = magazineSize - ammoLeftInMag;
 
-        // End reloading state
-        reloading = false;
-        reloadingText.SetText("");
-        Debug.Log("Reloading Finished");
+            if (reloadedAmmo < totalAmmo)
+            {
+                ammoLeftInMag = magazineSize;
+            }
+            else
+            {
+                reloadedAmmo = totalAmmo;
+                ammoLeftInMag = reloadedAmmo;
+            }
+            totalAmmo = totalAmmo - reloadedAmmo;
+
+            // End reloading state
+            reloading = false;
+            reloadingText.SetText("");
+            Debug.Log("Reloading Finished");
+        }
+    }
+
+    void OnEnable()
+    {
+        mainPistolStillActive = true;
+    }
+    void OnDisable()
+    {
+        mainPistolStillActive = false;
+
+        if (reloading)
+        {
+            // End reloading state
+            reloading = false;
+            reloadingText.SetText("");
+            Debug.Log("Reloading Canceled");
+            CancelInvoke("ReloadMainPistolFinished");
+        }
     }
 }

@@ -20,6 +20,7 @@ public class AssaultRifleScript : MonoBehaviour
     bool aRShooting, aRReadyToShoot, aRReloading;
     public bool aRTotalAmmoLeft;
     public bool aDS = false;
+    public bool aRStillActive;
 
     // References
     public Camera aimCam;
@@ -42,11 +43,6 @@ public class AssaultRifleScript : MonoBehaviour
 
     // Debugging
     public bool allowInvoke = true;
-
-    void Awake()
-    {
-        
-    }
 
     void Start()
     {
@@ -172,7 +168,7 @@ public class AssaultRifleScript : MonoBehaviour
         animator.SetTrigger("arShoot");
         gunSound.PlayOneShot(gunSoundClip, 1f);
 
-        // Decrease ammonition left
+        // Decrease ammunition left
         ammoLeftInARMag--;
         aRBulletsShot++;
 
@@ -213,31 +209,54 @@ public class AssaultRifleScript : MonoBehaviour
         reloadingText.SetText("Reloading...");
 
         // Wait for reloading time, then call finishing
-        Invoke("ReloadMainPistolFinished", reloadTime);
+        Invoke("ReloadAssaultRifleFinished", reloadTime);
         Debug.Log("Reloading");
     }
 
-    public void ReloadMainPistolFinished()
+    public void ReloadAssaultRifleFinished()
     {
-        // Count how many bullets were loaded into the magazine
-        int reloadedAmmo = magazineSize - ammoLeftInARMag;
-
-        // Fully loads the magazine if player has enough total ammo left. Otherwise loads all the ammo player has left into the magazine
-        if (reloadedAmmo < aRTotalAmmo)
+        if(aRStillActive)
         {
-            ammoLeftInARMag = magazineSize;
-        }
-        else
-        {
-            reloadedAmmo = aRTotalAmmo;
-            ammoLeftInARMag = reloadedAmmo;
-        }
-        // Decrease total ammo by the amount of ammo reloaded into the magazine
-        aRTotalAmmo = aRTotalAmmo - reloadedAmmo;
+            // Count how many bullets were loaded into the magazine
+            int reloadedAmmo = magazineSize - ammoLeftInARMag;
 
-        // End reloading state
-        aRReloading = false;
-        reloadingText.SetText("");
-        Debug.Log("Reloading Finished");
+            // Fully loads the magazine if player has enough total ammo left. Otherwise loads all the ammo player has left into the magazine
+            if (reloadedAmmo < aRTotalAmmo)
+            {
+                ammoLeftInARMag = magazineSize;
+            }
+            else
+            {
+                reloadedAmmo = aRTotalAmmo;
+                ammoLeftInARMag = reloadedAmmo;
+            }
+            // Decrease total ammo by the amount of ammo reloaded into the magazine
+            aRTotalAmmo = aRTotalAmmo - reloadedAmmo;
+
+            // End reloading state
+            aRReloading = false;
+            reloadingText.SetText("");
+            Debug.Log("Reloading Finished");
+
+        }
+    }
+
+    void OnEnable()
+    {
+        aRStillActive = true;
+    }
+
+    void OnDisable()
+    {
+        aRStillActive = false;
+
+        if (aRReloading)
+        {
+            // End reloading state
+            aRReloading = false;
+            reloadingText.SetText("");
+            Debug.Log("Reloading Canceled");
+            CancelInvoke("ReloadAssaultRifleFinished");
+        }
     }
 }
