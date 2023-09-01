@@ -35,6 +35,7 @@ public class AssaultRifleScript : MonoBehaviour
     public GameObject bHContainer;
     public Animator animator;
     public GameObject scopeRedDot;
+    public PlayerController pC;
 
     // HUD
     public TextMeshProUGUI ammunitionDisplay;
@@ -186,6 +187,7 @@ public class AssaultRifleScript : MonoBehaviour
         normalFOV = aimCam.fieldOfView;
         aimCam.fieldOfView = scopedFOV;
         scopeRedDot.SetActive(true);
+        pC.isScoped = true;
     }
 
     public void UnAimingDownSight()
@@ -193,6 +195,7 @@ public class AssaultRifleScript : MonoBehaviour
         Debug.Log("Unaiming called");
         aimCam.fieldOfView = normalFOV;
         scopeRedDot.SetActive(false);
+        pC.isScoped = false;
     }
 
     public void ResetShot()

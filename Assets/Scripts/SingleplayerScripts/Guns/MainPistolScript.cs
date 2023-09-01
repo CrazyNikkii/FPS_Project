@@ -34,6 +34,7 @@ public class MainPistolScript : MonoBehaviour
     public ParticleSystem muzzleFlash;
     public GameObject bHContainer;
     public Animator animator;
+    public PlayerController pC;
 
     // HUD
     public TextMeshProUGUI ammunitionDisplay;

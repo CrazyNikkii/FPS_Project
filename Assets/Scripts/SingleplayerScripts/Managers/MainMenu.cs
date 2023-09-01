@@ -15,6 +15,7 @@ public class MainMenu : MonoBehaviour
     public Slider effectsVolumeS;
     public Slider sensSlider;
     public TextMeshProUGUI sensitivityText;
+    public TextMeshProUGUI scopedSensitivityText;
 
     public void Start()
     {
@@ -47,7 +48,8 @@ public class MainMenu : MonoBehaviour
     
     public void Update()
     {
-        sensitivityText.text = (PlayerPrefs.GetFloat("Sensitivity")*10).ToString("0.0");
+        sensitivityText.text = (PlayerPrefs.GetFloat("Sensitivity")*1000).ToString("00");
+        scopedSensitivityText.text = (PlayerPrefs.GetFloat("ScopedSensitivity") * 1000).ToString("00");
     }
     public void PlayTraining()
     {
@@ -81,6 +83,11 @@ public class MainMenu : MonoBehaviour
     public void SetSensitivity(float sensitivity)
     {
         PlayerPrefs.SetFloat("Sensitivity", sensitivity);
+    }
+
+    public void SetScopedSensitivity(float scopedSensitivity)
+    {
+        PlayerPrefs.SetFloat("ScopedSensitivity", scopedSensitivity);
     }
 
     public void Load()

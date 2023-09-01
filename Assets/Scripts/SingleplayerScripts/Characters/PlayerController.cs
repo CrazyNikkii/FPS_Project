@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public float interactionDistance = 3f;
     public LayerMask mask;
 
+    public bool isScoped;
 
 
 
@@ -31,14 +32,22 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        float sens = PlayerPrefs.GetFloat("Sensitivity", 1f);
+        //float sens = PlayerPrefs.GetFloat("Sensitivity", 1f);
     }
 
     // Update is called once per frame
     void Update()
     {
         canMove = !gm.gamePaused;
-        sensitivity = PlayerPrefs.GetFloat ("Sensitivity");
+        if(isScoped)
+        {
+            sensitivity = PlayerPrefs.GetFloat("ScopedSensitivity");
+        }
+        else
+        {
+            sensitivity = PlayerPrefs.GetFloat("Sensitivity");
+        }
+        
 
         // Moving
         Vector3 forward = transform.TransformDirection (Vector3.forward);
