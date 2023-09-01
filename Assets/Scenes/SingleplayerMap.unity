@@ -33829,11 +33829,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: OptionsMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 4533474620545002921, guid: 2529bb82fbf8c504cb18d4ad75c84df4, type: 3}
+      propertyPath: scopedSensSlider
+      value: 
+      objectReference: {fileID: 3940945750035792979}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2529bb82fbf8c504cb18d4ad75c84df4, type: 3}
+--- !u!114 &3940945750035792979 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1250877553305030131, guid: 2529bb82fbf8c504cb18d4ad75c84df4, type: 3}
+  m_PrefabInstance: {fileID: 3940945750035792978}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4856555400087852602
 PrefabInstance:
   m_ObjectHideFlags: 0

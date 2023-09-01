@@ -219,6 +219,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4533474620545002921, guid: 2529bb82fbf8c504cb18d4ad75c84df4, type: 3}
+      propertyPath: scopedSensSlider
+      value: 
+      objectReference: {fileID: 638179520}
     - target: {fileID: 6024196375693401449, guid: 2529bb82fbf8c504cb18d4ad75c84df4, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -575,6 +579,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8114328375201575104, guid: 03d080181c42b9140ad7ad6ce4a155cf, type: 3}
   m_PrefabInstance: {fileID: 8584237208201855195}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &638179520 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1250877553305030131, guid: 2529bb82fbf8c504cb18d4ad75c84df4, type: 3}
+  m_PrefabInstance: {fileID: 77586667}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &679994359 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4351393656725844508, guid: 2529bb82fbf8c504cb18d4ad75c84df4, type: 3}
@@ -1035,6 +1050,10 @@ PrefabInstance:
       propertyPath: sensitivityText
       value: 
       objectReference: {fileID: 997962644}
+    - target: {fileID: 4713751111636780276, guid: 03d080181c42b9140ad7ad6ce4a155cf, type: 3}
+      propertyPath: scopedSensSlider
+      value: 
+      objectReference: {fileID: 638179520}
     - target: {fileID: 4713751111636780276, guid: 03d080181c42b9140ad7ad6ce4a155cf, type: 3}
       propertyPath: scopedSensitivityText
       value: 

@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
     public Slider musicVolumeS;
     public Slider effectsVolumeS;
     public Slider sensSlider;
+    public Slider scopedSensSlider;
     public TextMeshProUGUI sensitivityText;
     public TextMeshProUGUI scopedSensitivityText;
 
@@ -40,7 +41,7 @@ public class MainMenu : MonoBehaviour
             Load();
         }
         sensSlider.value = PlayerPrefs.GetFloat("Sensitivity");
-
+        scopedSensSlider.value = PlayerPrefs.GetFloat("ScopedSensitivity");
         masterVolumeS.value = PlayerPrefs.GetFloat("masterVolume");
         musicVolumeS.value = PlayerPrefs.GetFloat("musicVolume");
         effectsVolumeS.value = PlayerPrefs.GetFloat("effectsVolume");
