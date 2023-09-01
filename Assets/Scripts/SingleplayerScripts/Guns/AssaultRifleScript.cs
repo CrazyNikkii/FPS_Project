@@ -62,7 +62,7 @@ public class AssaultRifleScript : MonoBehaviour
     {
         CheckMainPistolActions();
 
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             aDS = !aDS;
             animator.SetBool("aimingDownSight", aDS);
@@ -166,7 +166,15 @@ public class AssaultRifleScript : MonoBehaviour
 
         // Play sound and muzzleflash
         muzzleFlash.Play();
-        animator.SetTrigger("arShoot");
+        if(aDS == true)
+        {
+            animator.SetTrigger("arADSShoot");
+        }
+        else if (aDS == false)
+        {
+            animator.SetTrigger("arShoot");
+        }
+
         gunSound.PlayOneShot(gunSoundClip, 1f);
 
         // Decrease ammunition left
@@ -252,6 +260,8 @@ public class AssaultRifleScript : MonoBehaviour
     void OnDisable()
     {
         aRStillActive = false;
+
+        animator.SetBool("aimingDownSight", false);
 
         if (aRReloading)
         {
