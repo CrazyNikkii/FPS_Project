@@ -176,7 +176,7 @@ public class MainPistolScript : MonoBehaviour
         animator.SetTrigger("pistolShoot");
         gunSound.PlayOneShot(gunSoundClip, 1f);
 
-        // Decrease ammonition left
+        // Decrease ammunition left
         ammoLeftInMag--;
         bulletsShot++;
         

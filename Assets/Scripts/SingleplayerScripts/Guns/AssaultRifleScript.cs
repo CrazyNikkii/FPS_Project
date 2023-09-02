@@ -50,33 +50,20 @@ public class AssaultRifleScript : MonoBehaviour
     {
         // Sound reference
         gunSound = GetComponent<AudioSource>();
-        // Set ammo values to max and set the right state
+        gunSound = audioManager.GetComponent<AudioSource>();
+
+        // Set ammo values to max and set the right states
         aRTotalAmmo = aRMaxAmmo;
         aRTotalAmmoLeft = true;
         ammoLeftInARMag = magazineSize;
         aRReadyToShoot = true;
         reloadingText.SetText("");
-        gunSound = audioManager.GetComponent<AudioSource>();
+        
     }
 
     void Update()
     {
         CheckAssaultRifleActions();
-
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            aDS = !aDS;
-            animator.SetBool("aimingDownSight", aDS);
-
-            if (aDS)
-            {
-                StartCoroutine(AimingDownSight());
-            }
-            else
-            {
-                UnAimingDownSight();
-            }
-        }
 
         // Toggle Firemode
         if (Input.GetKeyDown(KeyCode.B))
@@ -109,6 +96,23 @@ public class AssaultRifleScript : MonoBehaviour
 
     void CheckAssaultRifleActions()
     {
+        // Aiming down sights
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            aDS = !aDS;
+            animator.SetBool("aimingDownSight", aDS);
+
+            if (aDS)
+            {
+                StartCoroutine(AimingDownSight());
+            }
+            else
+            {
+                UnAimingDownSight();
+            }
+        }
+
+        // If weapon is not on full auto, only reads the input once
         if (fullAutoMode) aRShooting = Input.GetKey(KeyCode.Mouse0);
         else aRShooting = Input.GetKeyDown(KeyCode.Mouse0);
 
@@ -118,6 +122,7 @@ public class AssaultRifleScript : MonoBehaviour
         if (aRReadyToShoot && aRShooting && !aRReloading && ammoLeftInARMag <= 0 && aRTotalAmmoLeft)
             ReloadAssaultRifle();
 
+        // Turn on/off the flashlight
         if(Input.GetKeyDown(KeyCode.T))
         {
             if(flashLight.activeInHierarchy)
@@ -177,7 +182,7 @@ public class AssaultRifleScript : MonoBehaviour
 
         }
 
-        // Play sound and muzzleflash
+        // Play muzzleflash
         muzzleFlash.Play();
         if(aDS == true)
         {
@@ -188,6 +193,7 @@ public class AssaultRifleScript : MonoBehaviour
             animator.SetTrigger("arShoot");
         }
 
+        // Play sound
         gunSound.PlayOneShot(gunSoundClip, 1f);
 
         // Decrease ammunition left
@@ -204,6 +210,7 @@ public class AssaultRifleScript : MonoBehaviour
 
     IEnumerator AimingDownSight()
     {
+        // Waits for 0.1s before zooming with the camera. Turns the red dot on. Changes correct states.
         yield return new WaitForSeconds(.10f);
         normalFOV = aimCam.fieldOfView;
         aimCam.fieldOfView = scopedFOV;
@@ -213,6 +220,7 @@ public class AssaultRifleScript : MonoBehaviour
 
     public void UnAimingDownSight()
     {
+        // Changes correct states. Turns red dot on.
         Debug.Log("Unaiming called");
         aimCam.fieldOfView = normalFOV;
         scopeRedDot.SetActive(false);
@@ -239,6 +247,7 @@ public class AssaultRifleScript : MonoBehaviour
 
     public void ReloadAssaultRifleFinished()
     {
+        // Player can't reload a weapon he is not currently holding
         if(aRStillActive)
         {
             // Count how many bullets were loaded into the magazine

@@ -7,38 +7,38 @@ using UnityEngine;
 [Serializable]
 public class PlayerController : MonoBehaviour
 {
-    //Floats and stuff
+    // Player stats
     [SerializeField] private float walkSpeed = 7.5f;
     [SerializeField] private float runSpeed = 11.5f;
     [SerializeField] private float jumpForce = 8.0f;
     [SerializeField] private float gravity = 20.0f;
-    public Camera playerCam;
     public float sensitivity;
     public float cameraLimit = 90.0f;
-    public GameManager gm;
     public float interactionDistance = 3f;
+    
+    // References
+    public GameManager gm;
+    public Camera playerCam;
     public LayerMask mask;
-
-    public bool isScoped;
-
-
-
     CharacterController characterController;
+
+    // States
+    public bool isScoped;
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0f;
     public bool canMove;
 
-    // Start is called before the first frame update
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        //float sens = PlayerPrefs.GetFloat("Sensitivity", 1f);
     }
 
-    // Update is called once per frame
     void Update()
     {
+        // Block movement during pause
         canMove = !gm.gamePaused;
+
+        // Sets correct sensitivty between scoped and normal
         if(isScoped)
         {
             sensitivity = PlayerPrefs.GetFloat("ScopedSensitivity");

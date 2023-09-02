@@ -9,6 +9,7 @@ using System.Runtime.InteropServices.ComTypes;
 
 public class MainMenu : MonoBehaviour
 {
+    // References
     public AudioMixer audioMixer;
     public Slider masterVolumeS;
     public Slider musicVolumeS;
@@ -20,6 +21,7 @@ public class MainMenu : MonoBehaviour
 
     public void Start()
     {
+        // Checks if any data saved on player prefs, if not, sets default values. If there is saved data, loads that instead
         if (!PlayerPrefs.HasKey("masterVolume"))
         {
             PlayerPrefs.SetFloat("masterVolume", 1f);
@@ -34,12 +36,14 @@ public class MainMenu : MonoBehaviour
         }
         if (!PlayerPrefs.HasKey("Sensitivity"))
         {
-            PlayerPrefs.SetFloat("Sensitivity", 1f);
+            PlayerPrefs.SetFloat("Sensitivity", 0.1f);
         }
         else
         {
             Load();
         }
+
+        // Moves the sliders to correct positions
         sensSlider.value = PlayerPrefs.GetFloat("Sensitivity");
         scopedSensSlider.value = PlayerPrefs.GetFloat("ScopedSensitivity");
         masterVolumeS.value = PlayerPrefs.GetFloat("masterVolume");
@@ -49,15 +53,19 @@ public class MainMenu : MonoBehaviour
     
     public void Update()
     {
+        // Shows the sensitivty sliders value to player. Makes it easier to adjust sensitivity.
         sensitivityText.text = (PlayerPrefs.GetFloat("Sensitivity")*1000).ToString("00");
         scopedSensitivityText.text = (PlayerPrefs.GetFloat("ScopedSensitivity") * 1000).ToString("00");
     }
+
+    // Play button
     public void PlayTraining()
     {
         SceneManager.LoadScene("SingleplayerMap");
         Save();
     }
 
+    // Quit Game button
     public void QuitGame()
     {
         Application.Quit();
@@ -65,6 +73,7 @@ public class MainMenu : MonoBehaviour
         Save();
     }
 
+    // Adjusting the sliders sets the value to player prefs
     public void SetMasterVolume(float masterVolume)
     {
         audioMixer.SetFloat("masterVolume", Mathf.Log10 (masterVolume) * 20);
@@ -91,6 +100,7 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetFloat("ScopedSensitivity", scopedSensitivity);
     }
 
+    // Load the data
     public void Load()
     {
         PlayerPrefs.GetFloat("masterVolume");
@@ -98,6 +108,7 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.GetFloat("effectsVolume");
     }
 
+    // Save data
     public void Save()
     {
         PlayerPrefs.Save();

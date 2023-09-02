@@ -4,23 +4,25 @@ using UnityEngine;
 
 public class WeaponSwitcher : MonoBehaviour
 {
+    // Weapon
     public int selectedWeapon = 0;
 
+    // References
     public GameObject aRStand;
     public AssaultRifleScript assaultRifleScript;
     public GameObject pistolStand;
     public MainPistolScript mainPistolScript;
-    //public GameObject pistol;
-    // Start is called before the first frame update
+
     void Start()
     {
         SelectWeapon();
     }
 
-    // Update is called once per frame
     void Update()
     {
         int previousSelectedWeapon = selectedWeapon;
+
+        // Select the weapon with scroll wheel
         if(Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
             if (selectedWeapon >= transform.childCount - 1)
@@ -40,6 +42,7 @@ public class WeaponSwitcher : MonoBehaviour
             }
         }
 
+        // Select the weapon with numbers
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             selectedWeapon = 0;
@@ -50,6 +53,7 @@ public class WeaponSwitcher : MonoBehaviour
             selectedWeapon = 1;
         }
 
+        // Change the weapon to selected weapon
         if (previousSelectedWeapon != selectedWeapon)
         {
             SelectWeapon();
