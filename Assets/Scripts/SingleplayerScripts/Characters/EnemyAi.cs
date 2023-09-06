@@ -91,9 +91,9 @@ public class EnemyAi : MonoBehaviour
         Debug.Log("Attacking");
         agent.SetDestination(transform.position);
 
-        transform.LookAt(player);
+        transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
 
-        if(!hasAttacked)
+        if (!hasAttacked)
         {
             Rigidbody rb = Instantiate(bullet, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * 5f, ForceMode.Impulse);

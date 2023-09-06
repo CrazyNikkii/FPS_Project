@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float runSpeed = 11.5f;
     [SerializeField] private float jumpForce = 8.0f;
     [SerializeField] private float gravity = 20.0f;
+    public float playerHealth = 100f;
     public float sensitivity;
     public float cameraLimit = 90.0f;
     public float interactionDistance = 3f;
