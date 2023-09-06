@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -5862745607156751562}
   - component: {fileID: 8416109351098835464}
   m_Layer: 0
-  m_Name: TargetDummyPrefab
+  m_Name: Enemy
   m_TagString: Dummy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,7 +62,7 @@ MonoBehaviour:
   walkPointRange: 50
   attackSpeed: 1
   hasAttacked: 0
-  sightRange: 20
+  sightRange: 15
   attackRange: 5
   playerInSightRange: 0
   playerInAttackRange: 0
