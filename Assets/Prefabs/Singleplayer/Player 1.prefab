@@ -467,7 +467,7 @@ GameObject:
   - component: {fileID: 896115734052676169}
   m_Layer: 0
   m_Name: Player 1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -504,14 +504,15 @@ MonoBehaviour:
   runSpeed: 11.5
   jumpForce: 8
   gravity: 20
-  playerCam: {fileID: 1686159203547920180}
   sensitivity: 0
   cameraLimit: 90
-  gm: {fileID: 0}
   interactionDistance: 5
+  gm: {fileID: 0}
+  playerCam: {fileID: 1686159203547920180}
   mask:
     serializedVersion: 2
     m_Bits: 128
+  isScoped: 0
   canMove: 1
 --- !u!143 &896115734052676169
 CharacterController:
@@ -875,9 +876,11 @@ MonoBehaviour:
   scopedFOV: 50
   totalAmmoLeft: 0
   aDS: 0
+  mainPistolStillActive: 0
   aimCam: {fileID: 1686159203547920180}
   gunSound: {fileID: 8708494719037160247}
   gunSoundClip: {fileID: 8300000, guid: 28a5654e631d0ee4387f4f5fd61454b8, type: 3}
+  audioManager: {fileID: 0}
   bulletHole: {fileID: 25599160655038663, guid: c8f0859d1ee6e29409f16f88d17f71e4, type: 3}
   gm: {fileID: 0}
   dummyTargetBody: {fileID: 0}
@@ -885,6 +888,7 @@ MonoBehaviour:
   muzzleFlash: {fileID: 1073686127764367546}
   bHContainer: {fileID: 0}
   animator: {fileID: 0}
+  pC: {fileID: 0}
   ammunitionDisplay: {fileID: 0}
   totalAmmunitionDisplay: {fileID: 0}
   reloadingText: {fileID: 0}
@@ -1109,6 +1113,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2029811437628175363, guid: 689946d975a0e55449b1e7ae41933e73, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1154,9 +1162,11 @@ MonoBehaviour:
   scopedFOV: 15
   aRTotalAmmoLeft: 0
   aDS: 0
+  aRStillActive: 0
   aimCam: {fileID: 1686159203547920180}
   gunSound: {fileID: 7787396985483169937}
   gunSoundClip: {fileID: 0}
+  audioManager: {fileID: 0}
   bulletHole: {fileID: 25599160655038663, guid: c8f0859d1ee6e29409f16f88d17f71e4, type: 3}
   gm: {fileID: 0}
   dummyTargetBody: {fileID: 0}
@@ -1165,6 +1175,8 @@ MonoBehaviour:
   bHContainer: {fileID: 0}
   animator: {fileID: 0}
   scopeRedDot: {fileID: 0}
+  pC: {fileID: 0}
+  flashLight: {fileID: 0}
   ammunitionDisplay: {fileID: 0}
   totalAmmunitionDisplay: {fileID: 0}
   reloadingText: {fileID: 0}
