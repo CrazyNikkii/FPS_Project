@@ -5,6 +5,9 @@ using UnityEngine.AI;
 
 public class EnemyAi : MonoBehaviour
 {
+    public float health = 100f;
+    public TestingModeManager testingModeManager;
+
     public NavMeshAgent agent;
     public Transform player;
     public LayerMask isGround, isPlayer;
@@ -22,6 +25,10 @@ public class EnemyAi : MonoBehaviour
     
     void Start()
     {
+        testingModeManager = FindObjectOfType<TestingModeManager>();
+        health = 100f;
+        testingModeManager.enemiesLeft = testingModeManager.numberOfDummies;
+
         player = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
     }
@@ -106,5 +113,32 @@ public class EnemyAi : MonoBehaviour
     void ResetAttack()
     {
         hasAttacked = false;
+    }
+
+    public void TakeHeadDamage(float damage)
+    {
+        Debug.Log("Took Head damage" + damage);
+        health -= damage;
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+    public void TakeBodyDamage(float damage)
+    {
+        Debug.Log("Took Body damage" + damage);
+        health -= damage;
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        testingModeManager.enemiesLeft--;
+        Debug.Log("Enemy died. Remaining enemies: " + testingModeManager.enemiesLeft);
+        testingModeManager.enemiesLeftText.text = testingModeManager.enemiesLeft.ToString() + ": Left";
+        Destroy(gameObject);
     }
 }

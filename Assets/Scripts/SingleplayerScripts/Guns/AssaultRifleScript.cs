@@ -10,7 +10,8 @@ public class AssaultRifleScript : MonoBehaviour
     [SerializeField] private int magazineSize, bulletsPerTap;
     [SerializeField] private bool fullAutoMode;
     int ammoLeftInARMag, aRBulletsShot;
-    public float aRDamage = 50f;
+    public float aRDamage = 20f;
+    public float hSMultiplier = 3f;
     public int aRMaxAmmo = 20;
     public int aRTotalAmmo;
     public float scopedFOV = 15f;
@@ -29,8 +30,7 @@ public class AssaultRifleScript : MonoBehaviour
     public GameObject audioManager;
     public GameObject bulletHole;
     public GameManager gm;
-    public TargetDummyBody dummyTargetBody;
-    public TargetDummyHead dummyTargetHead;
+    public EnemyAi enemyAi;
     public ParticleSystem muzzleFlash;
     public GameObject bHContainer;
     public Animator animator;
@@ -58,6 +58,7 @@ public class AssaultRifleScript : MonoBehaviour
         ammoLeftInARMag = magazineSize;
         aRReadyToShoot = true;
         reloadingText.SetText("");
+        aRDamage = 20f;
         
     }
 
@@ -152,20 +153,22 @@ public class AssaultRifleScript : MonoBehaviour
         Vector3 rayOrigin = aimCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
         RaycastHit hit;
 
-        // Check if raycast hits a dummy, headshot x2 damage
+        // Check if raycast hits a dummy, headshot multiplies damage
         if (Physics.Raycast(rayOrigin, aimCam.transform.forward, out hit))
         {
-            TargetDummyHead targetDummyHead = hit.transform.GetComponent<TargetDummyHead>();
-            TargetDummyBody targetDummyBody = hit.transform.GetComponent<TargetDummyBody>();
-            if (targetDummyHead != null)
-            {
-                targetDummyHead.TakeDamageHead(aRDamage * 3);
-            }
-            else if (targetDummyBody != null)
-            {
-                targetDummyBody.TakeDamageBody(aRDamage);
-            }
+            EnemyAi enemyAi = hit.transform.GetComponent<EnemyAi>();
 
+            // Check if headshot, apply headshot damage
+            if (hit.collider is SphereCollider)
+            {
+                enemyAi.TakeHeadDamage(aRDamage * hSMultiplier);
+            }
+            // Apply body damage
+            else if (hit.collider is CapsuleCollider)
+            {
+                enemyAi.TakeBodyDamage(aRDamage);
+            }
+           
             // If not hitting a dummy, make a bullet hole
             else
             {

@@ -10,7 +10,8 @@ public class MainPistolScript : MonoBehaviour
     [SerializeField] private int magazineSize, bulletsPerTap;
     [SerializeField] private bool allowButtonDown;
     int ammoLeftInMag, bulletsShot;
-    public float damage = 50f;
+    public float damage = 20f;
+    public float hSMultiplier = 2f;
     public int maxAmmo = 20;
     public int totalAmmo;
     public float normalFOV;
@@ -29,8 +30,7 @@ public class MainPistolScript : MonoBehaviour
     public GameObject audioManager;
     public GameObject bulletHole;
     public GameManager gm;
-    public TargetDummyBody dummyTargetBody;
-    public TargetDummyHead dummyTargetHead;
+    public EnemyAi enemyAi;
     public ParticleSystem muzzleFlash;
     public GameObject bHContainer;
     public Animator animator;
@@ -55,6 +55,7 @@ public class MainPistolScript : MonoBehaviour
         ammoLeftInMag = magazineSize;
         readyToShoot = true;
         reloadingText.SetText("");
+        damage = 20f;
     }
 
     void Update()
@@ -138,18 +139,20 @@ public class MainPistolScript : MonoBehaviour
         Vector3 rayOrigin = aimCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
         RaycastHit hit;
 
-        // Check if raycast hits a dummy, headshot x2 damage
+        // Check if raycast hits a dummy, headshot multiplies damage
         if (Physics.Raycast(rayOrigin, aimCam.transform.forward, out hit))
         {
-            TargetDummyHead targetDummyHead = hit.transform.GetComponent<TargetDummyHead>();
-            TargetDummyBody targetDummyBody = hit.transform.GetComponent<TargetDummyBody>();
-            if (targetDummyHead != null)
+            EnemyAi enemyAi = hit.transform.GetComponent<EnemyAi>();
+
+            // Check if headshot, apply headshot damage
+            if (hit.collider is SphereCollider)
             {
-                targetDummyHead.TakeDamageHead(damage * 2);
+                enemyAi.TakeHeadDamage(damage * hSMultiplier);
             }
-            else if (targetDummyBody != null)
+            // Apply body damage
+            else if (hit.collider is CapsuleCollider)
             {
-                targetDummyBody.TakeDamageBody(damage);
+                enemyAi.TakeBodyDamage(damage);
             }
 
             // If not hitting a dummy, make a bullet hole

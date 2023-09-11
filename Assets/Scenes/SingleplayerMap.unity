@@ -32820,6 +32820,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1001534643593433588, guid: d898a3dbfa4e1a44eba04679ad464947, type: 3}
+      propertyPath: m_TagString
+      value: GunHolder
+      objectReference: {fileID: 0}
+    - target: {fileID: 1714110291217269429, guid: d898a3dbfa4e1a44eba04679ad464947, type: 3}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3649460345497181653, guid: d898a3dbfa4e1a44eba04679ad464947, type: 3}
       propertyPath: m_Name
       value: Player 1
@@ -32884,6 +32892,10 @@ PrefabInstance:
       propertyPath: gm
       value: 
       objectReference: {fileID: 274053554}
+    - target: {fileID: 8366592051394625289, guid: d898a3dbfa4e1a44eba04679ad464947, type: 3}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 4199173618514099623, guid: d898a3dbfa4e1a44eba04679ad464947, type: 3}
