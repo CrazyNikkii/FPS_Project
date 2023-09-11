@@ -65,6 +65,12 @@ public class MainMenu : MonoBehaviour
         Save();
     }
 
+    public void PlayTutorial()
+    {
+        SceneManager.LoadScene("Tutorial");
+        Save();
+    }
+
     // Quit Game button
     public void QuitGame()
     {
