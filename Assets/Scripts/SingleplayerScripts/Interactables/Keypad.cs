@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Keypad : Interactable
 {
+    public TestingModeManager testingModeManager;
     public GameManager gm;
     public bool interactedOnce;
 
     // Start is called before the first frame update
     void Start()
     {
+        testingModeManager = FindObjectOfType<TestingModeManager>();
+        gm = FindObjectOfType<GameManager>();
         interactedOnce = false;
     }
 
@@ -21,13 +24,13 @@ public class Keypad : Interactable
 
     protected override void Interact()
     {
-        if(!gm.trainingModeRestartable && !interactedOnce)
+        if(!testingModeManager.trainingModeRestartable && !interactedOnce)
         {
-            gm.TrainingTestStart();
+            testingModeManager.TrainingTestStart();
             interactedOnce = true;
             Debug.Log("Interacted with " + gameObject.name);
         }
-        else if (interactedOnce && gm.trainingModeRestartable)
+        else if (interactedOnce && testingModeManager.trainingModeRestartable)
         {
             gm.RestartScene();
         }

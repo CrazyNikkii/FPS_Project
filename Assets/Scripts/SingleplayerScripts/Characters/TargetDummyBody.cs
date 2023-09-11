@@ -5,13 +5,13 @@ using UnityEngine;
 public class TargetDummyBody : MonoBehaviour
 {
     public float bodyHealth = 100f;
-    public GameManager gm;
+    public TestingModeManager testingModeManager;
 
     public void Start()
     {
-        gm = FindObjectOfType<GameManager>();
+        testingModeManager = FindObjectOfType<TestingModeManager>();
         bodyHealth = 100f;
-        gm.enemiesLeft = gm.numberOfDummies;
+        testingModeManager.enemiesLeft = testingModeManager.numberOfDummies;
     }
 
     public void TakeDamageBody(float damage)
@@ -26,9 +26,9 @@ public class TargetDummyBody : MonoBehaviour
 
     void Die()
     {
-        gm.enemiesLeft--;
-        Debug.Log("Enemy died. Remaining enemies: " + gm.enemiesLeft);
-        gm.enemiesLeftText.text = gm.enemiesLeft.ToString() + ": Left";
+        testingModeManager.enemiesLeft--;
+        Debug.Log("Enemy died. Remaining enemies: " + testingModeManager.enemiesLeft);
+        testingModeManager.enemiesLeftText.text = testingModeManager.enemiesLeft.ToString() + ": Left";
         Destroy(transform.parent.gameObject);
 
     }

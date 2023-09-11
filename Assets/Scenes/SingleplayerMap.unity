@@ -895,6 +895,62 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &92006681
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 92006682}
+  - component: {fileID: 92006683}
+  m_Layer: 0
+  m_Name: TestingModeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &92006682
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92006681}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &92006683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92006681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d09b88ea09aa32f48a82232620146f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trainingDummies: {fileID: 2194632796493783612, guid: 3d483bcd033bab14d8508b847743ce23, type: 3}
+  numberOfDummies: 10
+  spawnWallWest: {fileID: 927926515}
+  spawnWallEast: {fileID: 1162697123}
+  enemiesLeft: 0
+  startTimer: 5
+  startTimerText: {fileID: 1253762711}
+  timerScript: {fileID: 1329520105}
+  enemiesLeftText: {fileID: 1990386248}
+  trainingModeEnded: 0
+  trainingModeRestartable: 0
+  dummyContainer: {fileID: 472827123}
 --- !u!1001 &107599375
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26930,6 +26986,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: '[E] Start'
+  testingModeManager: {fileID: 92006683}
   gm: {fileID: 274053554}
   interactedOnce: 0
 --- !u!65 &1488291334
@@ -32824,7 +32881,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 274053554}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4199173618514099623, guid: d898a3dbfa4e1a44eba04679ad464947, type: 3}
+    - {fileID: 2962917853739015822, guid: d898a3dbfa4e1a44eba04679ad464947, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d898a3dbfa4e1a44eba04679ad464947, type: 3}
@@ -32845,3 +32904,4 @@ SceneRoots:
   - {fileID: 8590980983256490447}
   - {fileID: 4086536539256060943}
   - {fileID: 1981189343}
+  - {fileID: 92006682}
