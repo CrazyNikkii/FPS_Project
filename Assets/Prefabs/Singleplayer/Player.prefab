@@ -167,9 +167,9 @@ MonoBehaviour:
   aDS: 0
   mainPistolStillActive: 0
   aimCam: {fileID: 3148383170297925781}
-  gunSound: {fileID: 0}
+  gunSound: {fileID: 6877660126228005975, guid: e0567473afb195d4baed3c2245d91002, type: 3}
   gunSoundClip: {fileID: 8300000, guid: 28a5654e631d0ee4387f4f5fd61454b8, type: 3}
-  audioManager: {fileID: 0}
+  audioManager: {fileID: 8777105639915304007, guid: e0567473afb195d4baed3c2245d91002, type: 3}
   bulletHole: {fileID: 25599160655038663, guid: c8f0859d1ee6e29409f16f88d17f71e4, type: 3}
   gm: {fileID: 0}
   dummyTargetBody: {fileID: 0}
@@ -1481,9 +1481,9 @@ MonoBehaviour:
   aDS: 0
   aRStillActive: 0
   aimCam: {fileID: 3148383170297925781}
-  gunSound: {fileID: 0}
+  gunSound: {fileID: 6877660126228005975, guid: e0567473afb195d4baed3c2245d91002, type: 3}
   gunSoundClip: {fileID: 8300000, guid: 129d09d05e51be146af8fb44749e98ed, type: 3}
-  audioManager: {fileID: 0}
+  audioManager: {fileID: 8777105639915304007, guid: e0567473afb195d4baed3c2245d91002, type: 3}
   bulletHole: {fileID: 25599160655038663, guid: c8f0859d1ee6e29409f16f88d17f71e4, type: 3}
   gm: {fileID: 0}
   dummyTargetBody: {fileID: 0}

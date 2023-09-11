@@ -21,8 +21,13 @@ public class GameManager : MonoBehaviour
     public GameObject settingsUI;
     public GameObject hud;
 
+    public WeaponSwitcher weaponSwitcher;
+    public GameObject weaponHolder;
+
 void Start()
     {
+        weaponHolder = GameObject.FindGameObjectWithTag("GunHolder");
+        weaponSwitcher = weaponHolder.GetComponent<WeaponSwitcher>();
         // Pause status
         gamePaused = false;
         Time.timeScale = 1f;
@@ -31,6 +36,11 @@ void Start()
         {
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
+        }
+
+        if(scene.name == "SingleplayerMap")
+        {
+            weaponSwitcher.allowSwitch = true;
         }
     }
 

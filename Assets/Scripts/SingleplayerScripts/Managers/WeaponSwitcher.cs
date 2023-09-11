@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WeaponSwitcher : MonoBehaviour
 {
+    public bool allowSwitch = false;
     // Weapon
     public int selectedWeapon = 0;
 
@@ -15,15 +16,23 @@ public class WeaponSwitcher : MonoBehaviour
 
     void Start()
     {
-        SelectWeapon();
+        
     }
 
     void Update()
     {
+        if(allowSwitch ==  true)
+        {
+            SwitchWeapon();
+        }
+    }
+
+    void SwitchWeapon()
+    {
         int previousSelectedWeapon = selectedWeapon;
 
         // Select the weapon with scroll wheel
-        if(Input.GetAxis("Mouse ScrollWheel") > 0f)
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
             if (selectedWeapon >= transform.childCount - 1)
                 selectedWeapon = 0;
@@ -60,7 +69,7 @@ public class WeaponSwitcher : MonoBehaviour
         }
 
         // Resets player ads state if changing weapon during ads
-        if(assaultRifleScript.aDS == true)
+        if (assaultRifleScript.aDS == true)
         {
             if (aRStand.activeInHierarchy == false)
             {

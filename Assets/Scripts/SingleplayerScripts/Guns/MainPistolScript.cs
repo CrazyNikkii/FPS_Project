@@ -44,20 +44,17 @@ public class MainPistolScript : MonoBehaviour
     // Debugging
     public bool allowInvoke = true;
 
-    void Awake()
+    void Start()
     {
+        // Sound reference
+        gunSound = audioManager.GetComponent<AudioSource>();
+
         // Set ammo values to max and set the right state
         totalAmmo = maxAmmo;
         totalAmmoLeft = true;
         ammoLeftInMag = magazineSize;
         readyToShoot = true;
         reloadingText.SetText("");
-    }
-
-    void Start()
-    {
-        // Sound reference
-        gunSound = audioManager.GetComponent<AudioSource>();
     }
 
     void Update()
