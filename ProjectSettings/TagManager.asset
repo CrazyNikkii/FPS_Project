@@ -9,6 +9,7 @@ TagManager:
   - DummySpawnPoint
   - Dummy
   - GunHolder
+  - Ladder
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Interactable
   - Player
   - Wall
-  - 
+  - Ladder
   - 
   - 
   - 

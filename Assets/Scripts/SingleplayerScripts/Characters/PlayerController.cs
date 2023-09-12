@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
 
     // States
     public bool isScoped;
-    Vector3 moveDirection = Vector3.zero;
+    public Vector3 moveDirection = Vector3.zero;
     float rotationX = 0f;
     public bool canMove;
 
@@ -58,6 +58,7 @@ public class PlayerController : MonoBehaviour
         float curSpeedX = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis ("Vertical") : 0f;
         float curSpeedY = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis ("Horizontal") : 0f;
         float movementDirectionY = moveDirection.y;
+
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
         // Jump
